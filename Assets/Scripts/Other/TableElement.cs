@@ -39,7 +39,7 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void OnGazeEnter()
     {
-        Debug.Log("!Gaze entered at " + _atomName);
+        Debug.Log("Gaze entered at " + _atomName);
         if(_isSelected)
         {
             return;
@@ -50,7 +50,7 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void OnGazeLeave()
     {
-        Debug.Log("!Gaze left at " + _atomName);
+        Debug.Log("Gaze left at " + _atomName);
         CanselHighlighting();
     }
 

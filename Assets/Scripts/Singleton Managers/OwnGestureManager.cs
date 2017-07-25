@@ -14,7 +14,7 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     private class GestureNoneStrategy : IGestureStrategy
     {
-        public void Alghoritm() { }
+        public void Alghoritm() { Debug.Log("!GestureNoneStrategy"); }
     }
 
     private class GestureStandartStrategy : IGestureStrategy
@@ -22,10 +22,6 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
         public void Alghoritm()
         {
             Debug.Log("!GestureStandartStrategy");
-            if(OwnGazeManager.Instance.hitObjectType != OwnGazeManager.HitObjectType.Interactive)
-            {
-                return;
-            }
 
             if(Instance.onTapEvent != null)
             {
@@ -97,13 +93,17 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
     {
         public void Alghoritm()
         {
-            if(OwnGazeManager.Instance.hitObjectType != OwnGazeManager.HitObjectType.Interactive)
-            {
-                return;
-            }
-
             if(Instance.onTapEvent != null)
-            {
+            {                
+                if (OwnGazeManager.Instance.currentFocused != null &&
+                    OwnGazeManager.Instance.currentFocused is SkipGidButton)
+                {
+                    Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with SkipGidButton");
+                    Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocused);
+                    return;
+                }
+
+                Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with Chapter Menu");
                 Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedChapter);
                 Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedReset);
             }
@@ -131,7 +131,8 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     public void ChangeStrategyToNone()
     {
-        _tapGestureRecognizer.StopCapturingGestures();
+        if (_tapGestureRecognizer.IsCapturingGestures())
+            _tapGestureRecognizer.StopCapturingGestures();
 
         _strategy = new GestureNoneStrategy();
         _strategyName = _strategy.GetType().ToString();
@@ -141,7 +142,8 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     public void ChangeStrategyToStandart()
     {
-        _tapGestureRecognizer.StopCapturingGestures();
+        if (_tapGestureRecognizer.IsCapturingGestures())
+            _tapGestureRecognizer.StopCapturingGestures();
 
         _strategy = new GestureStandartStrategy();
         _strategyName = _strategy.GetType().ToString();
@@ -153,7 +155,8 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     public void ChangeStrategyToResize()
     {
-        _tapGestureRecognizer.StopCapturingGestures();
+        if (_tapGestureRecognizer.IsCapturingGestures())
+            _tapGestureRecognizer.StopCapturingGestures();
 
         _strategy = new GestureResizeStrategy();
         _strategyName = _strategy.GetType().ToString();
@@ -165,7 +168,8 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     public void ChangeStrategyToDragAndDrop()
     {
-        _tapGestureRecognizer.StopCapturingGestures();
+        if(_tapGestureRecognizer.IsCapturingGestures())
+            _tapGestureRecognizer.StopCapturingGestures();
 
         _strategy = new GestureDragAndDropStrategy();
         _strategyName = _strategy.GetType().ToString();
@@ -177,7 +181,8 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     public void ChangeStrategyToDemonstration()
     {
-        _tapGestureRecognizer.StopCapturingGestures();
+        if (_tapGestureRecognizer.IsCapturingGestures())
+            _tapGestureRecognizer.StopCapturingGestures();
 
         _strategy = new GestureDemonstrationStrategy();
         _strategyName = _strategy.GetType().ToString();
@@ -212,7 +217,7 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     void OnTap(InteractionSourceKind source, int tapCount, Ray headRay)
     {
-        Debug.Log("!Works OnTap with current strategy " + _strategyName);
+        Debug.Log("!Works OnTap with " + _strategyName + " strategy");
         
         _strategy.Alghoritm();
     }

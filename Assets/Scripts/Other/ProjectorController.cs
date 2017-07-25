@@ -31,10 +31,13 @@ public class ProjectorController : MonoBehaviour, IInteractive
     [SerializeField]
     private AtomUIStateController _atomUIState;
 
+    public bool IsProjectingAtom { get; private set; }
+
     void Awake()
     {
         _material = GetComponentInChildren<MeshRenderer>().material;
         atomFactory = new AtomFactory();
+        IsProjectingAtom = false;
     }
 
     public List<ActionType> GetAllowedActions()
@@ -117,8 +120,9 @@ public class ProjectorController : MonoBehaviour, IInteractive
         _atomUIState.atomNameText.text = _currentAtom.atomInformation.name;
         _atomUIState.atomFormulaText.text = _currentAtom.atomInformation.formula;
         _atomUIState.gameObject.SetActive(true);
-
         _atomUIState.ChangeViewToClassic3D();
+
+        IsProjectingAtom = true;
     }
 
     public Atom GetProjectedAtom()
@@ -134,6 +138,8 @@ public class ProjectorController : MonoBehaviour, IInteractive
         {
             Destroy(_currentAtom.gameObject);
         }
+
+        IsProjectingAtom = false;
     }
 
     public bool TryToResize() { return false; }

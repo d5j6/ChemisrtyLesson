@@ -79,20 +79,38 @@ public class SkipGidButton : MonoBehaviour, IInteractive
     public void OnGestureTap()
     {
         Debug.Log("!Skip Gid Button");
-        if (gameObject.tag == "Free Mode")
+        if(PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Standart)
         {
-            Debug.Log("!Free Mode " + Environment.StackTrace);
-            PlayerManager.Instance.ChangeStateToStandart();
-            CutsceneManager.Instance.StopCutscene();
+            //Destroying current projection of an atom before changing to demonstration mode
+            PeriodicTable periodicTable = GetComponentInParent<PeriodicTable>();
+            if (periodicTable.SelectedElement != null)
+                periodicTable.SelectedElement.CanselSelect();
+
+            PlayerManager.Instance.ChangeStateToDemonstration();
+            return;
         }
-        else
+
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration)
         {
-			if (playNextSection) {
-				CutsceneManager.Instance.NextChapter ();
-			} else {
-                Debug.Log("!Skip Cutscene");
-				CutsceneManager.Instance.SkipCutscene();
-			}
+            if (gameObject.tag == "Free Mode")
+            {
+                Debug.Log("!Free Mode");
+                CutsceneManager.Instance.StopCutscene();
+            }
+            else
+            {
+                if (playNextSection)
+                {
+                    CutsceneManager.Instance.NextChapter();
+                }
+                else
+                {
+                    Debug.Log("!Skip Cutscene");
+                    CutsceneManager.Instance.SkipCutscene();
+                }
+            }
+
+            PlayerManager.Instance.ChangeStateToStandart();
         }
 
         //GetComponentInParent<PeriodicTable>().SelectElement(GetComponentInChildren<TableElement>());

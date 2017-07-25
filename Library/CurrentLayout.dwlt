@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 11
+  controlID: 83
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 10
+  controlID: 82
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -185,10 +185,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 683, y: 492}
-  m_MaxSize: {x: 14004, y: 14042}
+  m_MinSize: {x: 681, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 9
+  controlID: 81
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -356,18 +356,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\User\Desktop\PRC
+  m_LastProjectPath: C:\Users\User\Desktop\Peroidoc Table Current
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 111}
-    m_SelectedIDs: 142e0000
-    m_LastClickedID: 11796
+    scrollPos: {x: 0, y: 503}
+    m_SelectedIDs: 9c380000
+    m_LastClickedID: 14492
     m_ExpandedIDs: 00000000142e00009a2f0000e0300000ee30000028330000b0330000ea3300008a35000030360000603700007c370000903700009c380000d2380000183900002c3b0000e83b00002c3c00002c5b00002e5b0000305b0000325b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -554,14 +554,14 @@ MonoBehaviour:
     width: 740
     height: 343
   m_SceneLighting: 1
-  lastFramingTime: 5102.5962652487315
+  lastFramingTime: 2197.696872121831
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.26271188, y: 0.1527021, z: 0.021145463}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: -0.26271188, y: 0.1527021, z: 0.021145463}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -584,13 +584,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.14870907, y: -0.074398965, z: -0.011224574, w: -0.98601454}
+    m_Target: {x: 0.16202459, y: -0.07276479, z: -0.011984929, w: -0.98402727}
     speed: 2
-    m_Value: {x: 0.14870906, y: -0.07439896, z: -0.0112245735, w: -0.9860144}
+    m_Value: {x: 0.16202459, y: -0.072764784, z: -0.011984929, w: -0.9840272}
   m_Size:
-    m_Target: 1.6965058
+    m_Target: 0.29290003
     speed: 2
-    m_Value: 1.6965058
+    m_Value: 0.29290003
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -629,9 +629,9 @@ MonoBehaviour:
     height: 343
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: e0fbffff00000000
+    m_SelectedIDs: 0cc80000
+    m_LastClickedID: 51212
+    m_ExpandedIDs: 6426ffff4427ffffee2affff0656ffffe656ffff905affff90fbffffa8fbffffe0fbffff00000000b43f0000d03f0000384100008a410000d2420000b2460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

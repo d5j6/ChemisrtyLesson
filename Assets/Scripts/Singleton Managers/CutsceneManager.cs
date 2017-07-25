@@ -27,15 +27,16 @@ public class CutsceneManager : Singleton<CutsceneManager>
     //public static bool canPlay = true;
     private TableElement[] test;
     public bool isStop;
+
     private void Test()
-    {
-        Debug.Log("Lal");
+    {        
         if (!isSkipped)
         {
             Debug.Log("SecondCutscene");
             _baseGID2.Play(() => { Debug.Log("BASE 2"); _baseGIDEnd.Play(() => { ActivateButton(); SkipCutscene(); }); _currentCutscene = _baseGIDEnd; _isPlaying = true; }); _baseGID2.JumpToSection("Groups and periods"); _currentCutscene = _baseGID2;
         }
     }
+
     void Start()
     {
         Cutscene.OnCutsceneStopped += Cutscene_OnCutsceneStopped;
@@ -61,15 +62,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
             allSections[i + _baseGid2Sections.Length + _baseGid1Sections.Length] = _baseGid2Sections[i];
         }
 
-        foreach (var item in allSections)
-        {
-
-            //Debug.Log(item);
-        }
-
-        //Debug.Log(allSections.Length);
         test = GameObject.FindObjectsOfType<TableElement>();
-
     }
 
     private void Cutscene_OnCutsceneStopped(Cutscene obj)
@@ -81,8 +74,6 @@ public class CutsceneManager : Singleton<CutsceneManager>
             _baseGIDEnd.RewindNoUndo();
             _baseGID2.RewindNoUndo();
             _baseGID1.RewindNoUndo();
-
-            PlayerManager.Instance.ChangeStateToStandart();
         }
     }
 

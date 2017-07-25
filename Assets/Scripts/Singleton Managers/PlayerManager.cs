@@ -45,7 +45,7 @@ public class PlayerManager : Singleton<PlayerManager>
                 switch (allowedActionType)
                 {
                     case ActionType.TapOnly:
-                        Debug.Log("!!!Player Standart Tap works" + Environment.StackTrace);
+                        Debug.Log("!!!Player Standart Tap works");
                         new TapCommand(interactive).Execute();
                         break;
                     case ActionType.DragAndDrop:
@@ -115,8 +115,8 @@ public class PlayerManager : Singleton<PlayerManager>
             Instance._state = new PlayerStandartState();
             Instance._stateName = Instance._state.GetType().ToString();
 
-            //Instance._inputFacade.ChangeStrategyToStandart();
-            Instance._inputFacade.ChangeStrategyToDemonstration();
+            Instance._inputFacade.ChangeStrategyToStandart();
+            //Instance._inputFacade.ChangeStrategyToDemonstration();
         }
 
         public void TryToDragInteractive(IInteractive interactive) { }
@@ -230,7 +230,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     #endregion
 
-    #region Properties
+    #region Fields
     private bool _isInitialized;
 
     private IPlayerState _state;
@@ -238,6 +238,10 @@ public class PlayerManager : Singleton<PlayerManager>
     private InputStrategyFacade _inputFacade;
 
     private string _stateName;
+    #endregion
+
+    #region Properties
+    public InputStrategyFacade.Strategies Strategy { get { return _inputFacade.Strategy; } }
     #endregion
 
     #region Initialize and Start methods

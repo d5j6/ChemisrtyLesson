@@ -187,6 +187,10 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
             //{
             //    _ownGaze._hitObjectType = HitObjectType.None;
             //}
+
+            //Clearing currentFocused to avoid saving data about objects from Standart mode
+            _ownGaze.currentFocused = null;
+
             RaycastHit hitInfo = _ownGaze.hitInfo;
             bool isHit = Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out hitInfo, 32f);
             _ownGaze.IsGazingAtObject = isHit;
@@ -300,135 +304,135 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
 
     //ADDITIONAL BY HSE
     public GameObject HitObject { get; set; }
-    //Basic gaze methods to identify physical and ui objects
-    private void RayCastUnityUI()
-    {
-        if (UnityUIPointerEvent == null)
-        {
-            UnityUIPointerEvent = new PointerEventData(EventSystem.current);
-        }
+    ////Basic gaze methods to identify physical and ui objects
+    //private void RayCastUnityUI()
+    //{
+    //    if (UnityUIPointerEvent == null)
+    //    {
+    //        UnityUIPointerEvent = new PointerEventData(EventSystem.current);
+    //    }
 
-        // 2D cursor position
-        Vector2 cursorScreenPos = Camera.main.WorldToScreenPoint(hitPoint);
-        UnityUIPointerEvent.delta = cursorScreenPos - UnityUIPointerEvent.position;
-        UnityUIPointerEvent.position = cursorScreenPos;
+    //    // 2D cursor position
+    //    Vector2 cursorScreenPos = Camera.main.WorldToScreenPoint(hitPoint);
+    //    UnityUIPointerEvent.delta = cursorScreenPos - UnityUIPointerEvent.position;
+    //    UnityUIPointerEvent.position = cursorScreenPos;
 
-        // Graphics raycast
-        rayCastResults.Clear();
-        EventSystem.current.RaycastAll(UnityUIPointerEvent, rayCastResults);
-        RaycastResult uiRaycastResult = FindClosestRaycastHitInLayermasks(rayCastResults, RaycastLayerMasks);
-        UnityUIPointerEvent.pointerCurrentRaycast = uiRaycastResult;
+    //    // Graphics raycast
+    //    rayCastResults.Clear();
+    //    EventSystem.current.RaycastAll(UnityUIPointerEvent, rayCastResults);
+    //    RaycastResult uiRaycastResult = FindClosestRaycastHitInLayermasks(rayCastResults, RaycastLayerMasks);
+    //    UnityUIPointerEvent.pointerCurrentRaycast = uiRaycastResult;
 
-        // If we have a raycast result, check if we need to overwrite the 3D raycast info
-        if (uiRaycastResult.gameObject != null)
-        {
-            // Add the near clip distance since this is where the raycast is from
-            float uiRaycastDistance = uiRaycastResult.distance + Camera.main.nearClipPlane;
+    //    // If we have a raycast result, check if we need to overwrite the 3D raycast info
+    //    if (uiRaycastResult.gameObject != null)
+    //    {
+    //        // Add the near clip distance since this is where the raycast is from
+    //        float uiRaycastDistance = uiRaycastResult.distance + Camera.main.nearClipPlane;
 
-            bool superseded3DObject = false;
-            if (IsGazingAtObject)
-            {
-                // Check layer prioritization
-                if (RaycastLayerMasks.Length > 1)
-                {
-                    // Get the index in the prioritized layer masks
-                    int uiLayerIndex = FindLayerListIndex(uiRaycastResult.gameObject.layer, RaycastLayerMasks);
-                    int threeDLayerIndex = FindLayerListIndex(hitInfo.collider.gameObject.layer, RaycastLayerMasks);
+    //        bool superseded3DObject = false;
+    //        if (IsGazingAtObject)
+    //        {
+    //            // Check layer prioritization
+    //            if (RaycastLayerMasks.Length > 1)
+    //            {
+    //                // Get the index in the prioritized layer masks
+    //                int uiLayerIndex = FindLayerListIndex(uiRaycastResult.gameObject.layer, RaycastLayerMasks);
+    //                int threeDLayerIndex = FindLayerListIndex(hitInfo.collider.gameObject.layer, RaycastLayerMasks);
 
-                    if (threeDLayerIndex > uiLayerIndex)
-                    {
-                        superseded3DObject = true;
-                    }
-                    else if (threeDLayerIndex == uiLayerIndex)
-                    {
-                        if (hitInfo.distance > uiRaycastDistance)
-                        {
-                            superseded3DObject = true;
-                        }
-                    }
-                }
-                else
-                {
-                    if (hitInfo.distance > uiRaycastDistance)
-                    {
-                        superseded3DObject = true;
-                    }
-                }
-            }
+    //                if (threeDLayerIndex > uiLayerIndex)
+    //                {
+    //                    superseded3DObject = true;
+    //                }
+    //                else if (threeDLayerIndex == uiLayerIndex)
+    //                {
+    //                    if (hitInfo.distance > uiRaycastDistance)
+    //                    {
+    //                        superseded3DObject = true;
+    //                    }
+    //                }
+    //            }
+    //            else
+    //            {
+    //                if (hitInfo.distance > uiRaycastDistance)
+    //                {
+    //                    superseded3DObject = true;
+    //                }
+    //            }
+    //        }
 
-            if (!IsGazingAtObject || superseded3DObject)
-            {
-                Debug.Log("UI object has been detected!");
+    //        if (!IsGazingAtObject || superseded3DObject)
+    //        {
+    //            Debug.Log("UI object has been detected!");
 
-                IsGazingAtObject = true;
-                Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(uiRaycastResult.screenPosition.x, uiRaycastResult.screenPosition.y, uiRaycastDistance));
-                hitInfo = new RaycastHit()
-                {
-                    distance = uiRaycastDistance,
-                    normal = -Camera.main.transform.forward,
-                    point = worldPos
-                };
+    //            IsGazingAtObject = true;
+    //            Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(uiRaycastResult.screenPosition.x, uiRaycastResult.screenPosition.y, uiRaycastDistance));
+    //            hitInfo = new RaycastHit()
+    //            {
+    //                distance = uiRaycastDistance,
+    //                normal = -Camera.main.transform.forward,
+    //                point = worldPos
+    //            };
 
-                HitObject = uiRaycastResult.gameObject;
-            }
-        }
-    }
-    private RaycastHit? PrioritizeHits(RaycastHit[] hits)
-    {
-        if (hits.Length == 0)
-            return null;
+    //            HitObject = uiRaycastResult.gameObject;
+    //        }
+    //    }
+    //}
+    //private RaycastHit? PrioritizeHits(RaycastHit[] hits)
+    //{
+    //    if (hits.Length == 0)
+    //        return null;
 
-        for (int layerMaskIdx = 0; layerMaskIdx < RaycastLayerMasks.Length; layerMaskIdx++)
-        {
-            RaycastHit? minHit = null;
+    //    for (int layerMaskIdx = 0; layerMaskIdx < RaycastLayerMasks.Length; layerMaskIdx++)
+    //    {
+    //        RaycastHit? minHit = null;
 
-            for (int hitIdx = 0; hitIdx < hits.Length; hitIdx++)
-            {
-                RaycastHit hit = hits[hitIdx];
-                if (IsLayerInLayerMask(hit.transform.gameObject.layer, RaycastLayerMasks[layerMaskIdx]) &&
-                    (minHit == null || hit.distance < minHit.Value.distance))
-                    minHit = hit;
-            }
+    //        for (int hitIdx = 0; hitIdx < hits.Length; hitIdx++)
+    //        {
+    //            RaycastHit hit = hits[hitIdx];
+    //            if (IsLayerInLayerMask(hit.transform.gameObject.layer, RaycastLayerMasks[layerMaskIdx]) &&
+    //                (minHit == null || hit.distance < minHit.Value.distance))
+    //                minHit = hit;
+    //        }
 
-            if (minHit != null)
-                return minHit;
-        }
+    //        if (minHit != null)
+    //            return minHit;
+    //    }
 
-        return null;
-    }
+    //    return null;
+    //}
 
-    private bool IsLayerInLayerMask(int layer, int layerMask)
-    {
-        return ((1 << layer) & layerMask) != 0;
-    }
+    //private bool IsLayerInLayerMask(int layer, int layerMask)
+    //{
+    //    return ((1 << layer) & layerMask) != 0;
+    //}
 
-    private RaycastResult FindClosestRaycastHitInLayermasks(List<RaycastResult> candidates, LayerMask[] layerMaskList)
-    {
-        int combinedLayerMask = 0;
+    //private RaycastResult FindClosestRaycastHitInLayermasks(List<RaycastResult> candidates, LayerMask[] layerMaskList)
+    //{
+    //    int combinedLayerMask = 0;
 
-        for (int i = 0; i < layerMaskList.Length; i++)
-            combinedLayerMask = combinedLayerMask | layerMaskList[i].value;
+    //    for (int i = 0; i < layerMaskList.Length; i++)
+    //        combinedLayerMask = combinedLayerMask | layerMaskList[i].value;
 
-        RaycastResult? minHit = null;
-        for (var i = 0; i < candidates.Count; ++i)
-        {
-            if (candidates[i].gameObject == null || !IsLayerInLayerMask(candidates[i].gameObject.layer, combinedLayerMask))
-                continue;
-            if (minHit == null || candidates[i].distance < minHit.Value.distance)
-                minHit = candidates[i];
-        }
+    //    RaycastResult? minHit = null;
+    //    for (var i = 0; i < candidates.Count; ++i)
+    //    {
+    //        if (candidates[i].gameObject == null || !IsLayerInLayerMask(candidates[i].gameObject.layer, combinedLayerMask))
+    //            continue;
+    //        if (minHit == null || candidates[i].distance < minHit.Value.distance)
+    //            minHit = candidates[i];
+    //    }
 
-        return minHit ?? new RaycastResult();
-    }
+    //    return minHit ?? new RaycastResult();
+    //}
 
-    private int FindLayerListIndex(int layer, LayerMask[] layerMaskList)
-    {
-        for (int i = 0; i < layerMaskList.Length; i++)
-            if (IsLayerInLayerMask(layer, layerMaskList[i].value))
-                return i;
+    //private int FindLayerListIndex(int layer, LayerMask[] layerMaskList)
+    //{
+    //    for (int i = 0; i < layerMaskList.Length; i++)
+    //        if (IsLayerInLayerMask(layer, layerMaskList[i].value))
+    //            return i;
 
-        return -1;
-    }
+    //    return -1;
+    //}
 
     private IGazeStrategy _strategy;
 
@@ -444,7 +448,17 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
     private BtnTap _currentFocusedChapter;
     private SkipGidButton _currentFocusedReset;
 
-    public IInteractive currentFocused { get { return _currentFocused; } }
+    public IInteractive currentFocused
+    {
+        get
+        {
+            return _currentFocused;
+        }
+        protected set
+        {
+            _currentFocused = value;
+        }
+    }
     public BtnTap currentFocusedChapter { get { return _currentFocusedChapter; } }
     public SkipGidButton currentFocusedReset { get { return _currentFocusedReset; } }
 

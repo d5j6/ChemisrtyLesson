@@ -29,6 +29,7 @@ public class PeriodicTable : MonoBehaviour
     #endregion
 
     private TableElement _selectedElement;
+    public TableElement SelectedElement { get { return _selectedElement; } }
 
     [SerializeField]
     private ProjectorController _projector;
@@ -46,10 +47,10 @@ public class PeriodicTable : MonoBehaviour
     public void SelectElement(TableElement element)
     {
         Debug.Log("!Selecting element " + element.atomName + " via PeriodicTable");
-        Debug.Log("!Selected element was " + _selectedElement.atomName);
 
         if (_selectedElement != null)
         {
+            Debug.Log("!Selected element was " + _selectedElement.atomName);
             _selectedElement.CanselSelect();
         }
 
