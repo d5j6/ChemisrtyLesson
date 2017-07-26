@@ -138,7 +138,7 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
         _strategyName = _strategy.GetType().ToString();
 
         _tapGestureRecognizer.StartCapturingGestures();
-    }
+    }                                       
 
     public void ChangeStrategyToStandart()
     {
