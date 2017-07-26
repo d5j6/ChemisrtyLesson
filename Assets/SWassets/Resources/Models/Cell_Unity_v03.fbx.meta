@@ -1,0 +1,257 @@
+fileFormatVersion: 2
+guid: 7be63a35d336b064893f9c971829be8f
+timeCreated: 1499091910
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: balls_grp
+    100002: brushTubes1
+    100004: brushTubes2
+    100006: brushTubes3
+    100008: brushTubes4
+    100010: brushTubes5
+    100012: brushTubes6
+    100014: brushTubes7
+    100016: C_element1
+    100018: C_element2
+    100020: C_Membrane_cut
+    100022: Cell_Membrane1
+    100024: //RootNode
+    100026: MASH_balls1
+    100028: MASH_balls2
+    100030: MASH_balls3
+    100032: MASH_balls4
+    100034: Mitho_Cut1
+    100036: Mitho_Cut2
+    100038: Mitho_Cut3
+    100040: Mitho_grp1
+    100042: mitho_Out2
+    100044: mitho_Out3
+    100046: Nucleus_grp
+    100048: nucleus_holes_outer
+    100050: nucleus_in
+    100052: nucleus_in2
+    100054: Plastines_grp
+    100056: polySurface1
+    100058: polySurface1 1
+    100060: polySurface1 2
+    100062: polySurface2
+    100064: polySurface2 1
+    100066: polySurface2 2
+    100068: pPlast1
+    100070: pPlast2
+    100072: pPlast3
+    100074: pPlast4
+    100076: pPlast5
+    100078: pPlast6
+    100080: pPlast_Goldgi
+    100082: Tubes
+    400000: balls_grp
+    400002: brushTubes1
+    400004: brushTubes2
+    400006: brushTubes3
+    400008: brushTubes4
+    400010: brushTubes5
+    400012: brushTubes6
+    400014: brushTubes7
+    400016: C_element1
+    400018: C_element2
+    400020: C_Membrane_cut
+    400022: Cell_Membrane1
+    400024: //RootNode
+    400026: MASH_balls1
+    400028: MASH_balls2
+    400030: MASH_balls3
+    400032: MASH_balls4
+    400034: Mitho_Cut1
+    400036: Mitho_Cut2
+    400038: Mitho_Cut3
+    400040: Mitho_grp1
+    400042: mitho_Out2
+    400044: mitho_Out3
+    400046: Nucleus_grp
+    400048: nucleus_holes_outer
+    400050: nucleus_in
+    400052: nucleus_in2
+    400054: Plastines_grp
+    400056: polySurface1
+    400058: polySurface1 1
+    400060: polySurface1 2
+    400062: polySurface2
+    400064: polySurface2 1
+    400066: polySurface2 2
+    400068: pPlast1
+    400070: pPlast2
+    400072: pPlast3
+    400074: pPlast4
+    400076: pPlast5
+    400078: pPlast6
+    400080: pPlast_Goldgi
+    400082: Tubes
+    2300000: brushTubes1
+    2300002: brushTubes2
+    2300004: brushTubes3
+    2300006: brushTubes4
+    2300008: brushTubes5
+    2300010: brushTubes6
+    2300012: brushTubes7
+    2300014: C_element1
+    2300016: C_element2
+    2300018: C_Membrane_cut
+    2300020: MASH_balls1
+    2300022: MASH_balls2
+    2300024: MASH_balls3
+    2300026: MASH_balls4
+    2300028: mitho_Out2
+    2300030: mitho_Out3
+    2300032: nucleus_holes_outer
+    2300034: nucleus_in
+    2300036: nucleus_in2
+    2300038: polySurface1
+    2300040: polySurface1 1
+    2300042: polySurface1 2
+    2300044: polySurface2
+    2300046: polySurface2 1
+    2300048: polySurface2 2
+    2300050: pPlast1
+    2300052: pPlast2
+    2300054: pPlast3
+    2300056: pPlast4
+    2300058: pPlast5
+    2300060: pPlast6
+    2300062: pPlast_Goldgi
+    3300000: brushTubes1
+    3300002: brushTubes2
+    3300004: brushTubes3
+    3300006: brushTubes4
+    3300008: brushTubes5
+    3300010: brushTubes6
+    3300012: brushTubes7
+    3300014: C_element1
+    3300016: C_element2
+    3300018: C_Membrane_cut
+    3300020: MASH_balls1
+    3300022: MASH_balls2
+    3300024: MASH_balls3
+    3300026: MASH_balls4
+    3300028: mitho_Out2
+    3300030: mitho_Out3
+    3300032: nucleus_holes_outer
+    3300034: nucleus_in
+    3300036: nucleus_in2
+    3300038: polySurface1
+    3300040: polySurface1 1
+    3300042: polySurface1 2
+    3300044: polySurface2
+    3300046: polySurface2 1
+    3300048: polySurface2 2
+    3300050: pPlast1
+    3300052: pPlast2
+    3300054: pPlast3
+    3300056: pPlast4
+    3300058: pPlast5
+    3300060: pPlast6
+    3300062: pPlast_Goldgi
+    4300000: C_Membrane_cut
+    4300002: polySurface1
+    4300004: polySurface2
+    4300006: polySurface1
+    4300008: polySurface2
+    4300010: polySurface1
+    4300012: polySurface2
+    4300014: mitho_Out2
+    4300016: mitho_Out3
+    4300018: nucleus_holes_outer
+    4300020: nucleus_in
+    4300022: nucleus_in2
+    4300024: C_element1
+    4300026: C_element2
+    4300028: brushTubes1
+    4300030: brushTubes2
+    4300032: brushTubes3
+    4300034: brushTubes4
+    4300036: brushTubes5
+    4300038: brushTubes6
+    4300040: brushTubes7
+    4300042: pPlast_Goldgi
+    4300044: pPlast2
+    4300046: pPlast3
+    4300048: pPlast4
+    4300050: pPlast5
+    4300052: pPlast6
+    4300054: MASH_balls1
+    4300056: MASH_balls2
+    4300058: MASH_balls3
+    4300060: MASH_balls4
+    4300062: pPlast1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
