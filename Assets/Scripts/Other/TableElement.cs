@@ -78,7 +78,6 @@ public class TableElement : MonoBehaviour, IInteractive
         }
     }
 
-
     public void StopDrag() { }
 
     public bool TryToDrag() { return false; }

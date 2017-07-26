@@ -95,7 +95,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
 
         if (_baseGID2 != null && _baseGID2.isActive)
         {
-            _baseGID2.Stop(Cutscene.StopMode.Rewind);
+            _baseGID2.Stop(Cutscene.StopMode.Skip);
             return;
         }
 
@@ -117,12 +117,10 @@ public class CutsceneManager : Singleton<CutsceneManager>
     public void PlayBaseGIDCutscene2(string sectionName = "")
     {
         _isPlaying = true;
+
         _baseGID2.Play();
-        //_baseGID2.PlaySection(sectionName);
         if (!string.IsNullOrEmpty(sectionName))
-        {
             _baseGID2.JumpToSection(sectionName);
-        }
 
         _currentCutscene = _baseGID2;
     }
@@ -131,13 +129,12 @@ public class CutsceneManager : Singleton<CutsceneManager>
     {
         isSkipped = true;
         _isPlaying = true;
-        //PlayerManager.Instance.ChangeStateToStandart();
 
         DeactivateButton(sectionName);
 
         if (_baseGID2 != null)
         {
-            _baseGID2.Stop(Cutscene.StopMode.Rewind);
+            _baseGID2.Stop(Cutscene.StopMode.SkipRewindNoUndo);
             //return;
         }
 

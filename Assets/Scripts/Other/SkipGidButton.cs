@@ -26,9 +26,13 @@ public class SkipGidButton : MonoBehaviour, IInteractive
     private Color _highlightColor = Color.white;
 
     [SerializeField]
+    private Color _highlightFreeModeColor = Color.cyan;
+
+    [SerializeField]
     private float _duration = 1f;
 
 	private bool isTextPro;
+    private bool isFreeMode;
 	public bool playNextSection = false;
 
     public List<ActionType> GetAllowedActions()
@@ -44,36 +48,78 @@ public class SkipGidButton : MonoBehaviour, IInteractive
 
 		_text = GetComponentInChildren<Text>();
 
-        if (_text != null) _text.color = Color.white;		
-	}
+        if (_text != null) _text.color = Color.white;
+
+        isFreeMode = true;
+        HighlightFreeModeText();
+    }
+
+    private void HighlightFreeModeText()
+    {
+        if (!isTextPro)
+        {
+            _colorTween.Kill();
+            _colorTween = DOTween.To(() => { return _text.color; }, (c) => { _text.color = c; }, _highlightFreeModeColor, _duration).Play();
+        }
+
+        if (isTextPro)
+        {
+            _colorTween.Kill();
+            _colorTween = DOTween.To(() => { return _textPro.color; }, (c) => { _textPro.color = c; }, _highlightFreeModeColor, _duration).Play();
+        }
+    }
+
+    private void DeHighlightFreeModeText()
+    {
+        if (!isTextPro)
+        {
+            _colorTween.Kill();
+            _colorTween = DOTween.To(() => { return _text.color; }, (c) => { _text.color = c; }, _selfColor, _duration).Play();
+        }
+
+        if (isTextPro)
+        {
+            _colorTween.Kill();
+            _colorTween = DOTween.To(() => { return _textPro.color; }, (c) => { _textPro.color = c; }, _selfColor, _duration).Play();
+        }
+    }
 
     public void OnGazeEnter()
     {
 		Debug.Log ("!SKIP ENTER: " + gameObject.name);
-            
-		if (!isTextPro) {
-			_colorTween.Kill();
-			_colorTween = DOTween.To(() => { return _text.color; }, (c) => { _text.color = c; }, _highlightColor, _duration).Play();
-		}
 
-		if (isTextPro) {
-			_colorTween.Kill();
-			_colorTween = DOTween.To(() => { return _textPro.color; }, (c) => { _textPro.color = c; }, _highlightColor, _duration).Play();
-		}
-        
+        if (isFreeMode)
+            return;
+
+        if (!isTextPro)
+        {
+            _colorTween.Kill();
+            _colorTween = DOTween.To(() => { return _text.color; }, (c) => { _text.color = c; }, _highlightColor, _duration).Play();
+        }
+
+        if (isTextPro)
+        {
+            _colorTween.Kill();
+            _colorTween = DOTween.To(() => { return _textPro.color; }, (c) => { _textPro.color = c; }, _highlightColor, _duration).Play();
+        }
     }
 
     public void OnGazeLeave()
     {
-		if (!isTextPro) {
-			_colorTween.Kill();
-			_colorTween = DOTween.To(() => { return _text.color; }, (c) => { _text.color = c; }, _selfColor, _duration).Play();
-		}
+        if (isFreeMode)
+            return;
 
-		if (isTextPro) {
-			_colorTween.Kill();
-			_colorTween = DOTween.To(() => { return _textPro.color; }, (c) => { _textPro.color = c; }, _selfColor, _duration).Play();
-		} 
+        if (!isTextPro)
+        {
+            _colorTween.Kill();
+            _colorTween = DOTween.To(() => { return _text.color; }, (c) => { _text.color = c; }, _selfColor, _duration).Play();
+        }
+
+        if (isTextPro)
+        {
+            _colorTween.Kill();
+            _colorTween = DOTween.To(() => { return _textPro.color; }, (c) => { _textPro.color = c; }, _selfColor, _duration).Play();
+        }
     }
 
     public void OnGestureTap()
@@ -81,6 +127,9 @@ public class SkipGidButton : MonoBehaviour, IInteractive
         Debug.Log("!Skip Gid Button");
         if(PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Standart)
         {
+            DeHighlightFreeModeText();
+            isFreeMode = false;
+
             //Destroying current projection of an atom before changing to demonstration mode
             PeriodicTable periodicTable = GetComponentInParent<PeriodicTable>();
             if (periodicTable.SelectedElement != null)
@@ -92,24 +141,34 @@ public class SkipGidButton : MonoBehaviour, IInteractive
 
         if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration)
         {
-            if (gameObject.tag == "Free Mode")
-            {
-                Debug.Log("!Free Mode");
-                CutsceneManager.Instance.StopCutscene();
-            }
-            else
-            {
-                if (playNextSection)
-                {
-                    CutsceneManager.Instance.NextChapter();
-                }
-                else
-                {
-                    Debug.Log("!Skip Cutscene");
-                    CutsceneManager.Instance.SkipCutscene();
-                }
-            }
+            //if (gameObject.tag == "Free Mode")
+            //{
+            //    Debug.Log("!Free Mode");
+            //    CutsceneManager.Instance.StopCutscene();
+            //}
+            //else
+            //{
+            //    if (playNextSection)
+            //    {
+            //        CutsceneManager.Instance.NextChapter();
+            //    }
+            //    else
+            //    {
+            //        Debug.Log("!Skip Cutscene");
+            //        CutsceneManager.Instance.SkipCutscene();
+            //    }
+            //}
 
+            HighlightFreeModeText();
+            isFreeMode = true;
+
+            if (!CutsceneManager.Instance.isStop)
+            {
+                CutsceneManager.Instance.StopCutscene();
+                //CutsceneManager.Instance.StopAllCoroutines();
+                CutsceneManager.Instance.DeactivateButton();
+            }
+            //CutsceneManager.Instance.
             PlayerManager.Instance.ChangeStateToStandart();
         }
 

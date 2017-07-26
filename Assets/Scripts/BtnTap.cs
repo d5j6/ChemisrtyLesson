@@ -54,8 +54,7 @@ public class BtnTap : MonoBehaviour, IInteractive
         if (!CutsceneManager.Instance.isStop)
         {
             CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName, btnTap: this);
-        }
-        
+        }        
     }
 
     public void OnGazeEnter()
