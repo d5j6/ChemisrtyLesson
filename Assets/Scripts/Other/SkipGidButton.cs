@@ -84,10 +84,8 @@ public class SkipGidButton : MonoBehaviour, IInteractive
         }
     }
 
-    public void OnGazeEnter()
+    public void HighLightOnGazeEnter()
     {
-		Debug.Log ("!SKIP ENTER: " + gameObject.name);
-
         if (isFreeMode)
             return;
 
@@ -104,7 +102,7 @@ public class SkipGidButton : MonoBehaviour, IInteractive
         }
     }
 
-    public void OnGazeLeave()
+    public void HighLightOnGazeLeave()
     {
         if (isFreeMode)
             return;
@@ -122,54 +120,71 @@ public class SkipGidButton : MonoBehaviour, IInteractive
         }
     }
 
+    public void OnGazeEnter()
+    {
+		Debug.Log ("!SKIP ENTER: " + gameObject.name);
+
+        HighLightOnGazeEnter();
+        SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_highlight");
+    }
+
+    public void OnGazeLeave()
+    {
+        HighLightOnGazeLeave();
+        SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_dehighlight");
+    }
+
+    public void ChangeStrategyToStandart()
+    {
+        //if (gameObject.tag == "Free Mode")
+        //{
+        //    Debug.Log("!Free Mode");
+        //    CutsceneManager.Instance.StopCutscene();
+        //}
+        //else
+        //{
+        //    if (playNextSection)
+        //    {
+        //        CutsceneManager.Instance.NextChapter();
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("!Skip Cutscene");
+        //        CutsceneManager.Instance.SkipCutscene();
+        //    }
+        //}
+        HighlightFreeModeText();
+        isFreeMode = true;
+        PlayerManager.Instance.ChangeStateToStandart();
+    }
+
+    public void ChangeStrategyToDemonstration()
+    {
+        DeHighlightFreeModeText();
+        isFreeMode = false;
+
+        //Destroying current projection of an atom before changing to demonstration mode
+        PeriodicTable periodicTable = GameObject.FindObjectOfType<PeriodicTable>();
+        if (periodicTable.SelectedElement != null)
+            periodicTable.SelectedElement.CanselSelect();
+
+        PlayerManager.Instance.ChangeStateToDemonstration();
+    }
+
     public void OnGestureTap()
     {
         Debug.Log("!Skip Gid Button");
         if(PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Standart)
         {
-            DeHighlightFreeModeText();
-            isFreeMode = false;
-
-            //Destroying current projection of an atom before changing to demonstration mode
-            PeriodicTable periodicTable = GetComponentInParent<PeriodicTable>();
-            if (periodicTable.SelectedElement != null)
-                periodicTable.SelectedElement.CanselSelect();
-
-            PlayerManager.Instance.ChangeStateToDemonstration();
+            ChangeStrategyToDemonstration();
+            SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_change_to_demonstration");
             return;
         }
 
         if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration)
         {
-            //if (gameObject.tag == "Free Mode")
-            //{
-            //    Debug.Log("!Free Mode");
-            //    CutsceneManager.Instance.StopCutscene();
-            //}
-            //else
-            //{
-            //    if (playNextSection)
-            //    {
-            //        CutsceneManager.Instance.NextChapter();
-            //    }
-            //    else
-            //    {
-            //        Debug.Log("!Skip Cutscene");
-            //        CutsceneManager.Instance.SkipCutscene();
-            //    }
-            //}
-
-            HighlightFreeModeText();
-            isFreeMode = true;
-
-            if (!CutsceneManager.Instance.isStop)
-            {
-                CutsceneManager.Instance.StopCutscene();
-                //CutsceneManager.Instance.StopAllCoroutines();
-                CutsceneManager.Instance.DeactivateButton();
-            }
-            //CutsceneManager.Instance.
-            PlayerManager.Instance.ChangeStateToStandart();
+            ChangeStrategyToStandart();
+            SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_change_to_standart");
         }
 
         //GetComponentInParent<PeriodicTable>().SelectElement(GetComponentInChildren<TableElement>());

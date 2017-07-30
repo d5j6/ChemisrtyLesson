@@ -22,7 +22,14 @@ public class TableElement : MonoBehaviour, IInteractive
     [SerializeField]
     private TextMeshPro _elementText;
 
-    private bool _isSelected;
+    private bool _isSelected = false;
+    public bool IsSelected
+    {
+        get
+        {
+            return _isSelected;
+        }
+    }
 
     void Awake()
     {        
@@ -39,8 +46,28 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void OnGazeEnter()
     {
-        Debug.Log("Gaze entered at " + _atomName);
+        Debug.Log("!Gaze entered at " + _atomName);
         if(_isSelected)
+        {
+            return;
+        }
+
+        _elementText.color = _highlightColor;
+
+        SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "highlight_element");
+    }
+
+    public void OnGazeLeave()
+    {
+        Debug.Log("Gaze left at " + _atomName);
+        CanselHighlighting();
+
+        SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "dehighlight_element");
+    }
+
+    public void HighlightElement()
+    {
+        if (_isSelected)
         {
             return;
         }
@@ -48,13 +75,7 @@ public class TableElement : MonoBehaviour, IInteractive
         _elementText.color = _highlightColor;
     }
 
-    public void OnGazeLeave()
-    {
-        Debug.Log("Gaze left at " + _atomName);
-        CanselHighlighting();
-    }
-
-    private void CanselHighlighting()
+    public void CanselHighlighting()
     {
         if(_isSelected)
         {
@@ -76,6 +97,8 @@ public class TableElement : MonoBehaviour, IInteractive
         {
             Deselect();
         }
+
+        SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "select_element");
     }
 
     public void StopDrag() { }

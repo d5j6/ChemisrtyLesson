@@ -541,6 +541,7 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
     void Update()
     {
         Debug.Log(_strategyName);
-        _strategy.Alghorithm();
+        if(_strategy != null)
+            _strategy.Alghorithm();
     }
 }

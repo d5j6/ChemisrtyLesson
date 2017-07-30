@@ -95,17 +95,15 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
         {
             if(Instance.onTapEvent != null)
             {                
-                if (OwnGazeManager.Instance.currentFocused != null &&
-                    OwnGazeManager.Instance.currentFocused is SkipGidButton)
+                if (OwnGazeManager.Instance.currentFocusedReset != null)
                 {
                     Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with SkipGidButton");
-                    Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocused);
+                    Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedReset);
                     return;
                 }
 
-                Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with Chapter Menu");
+                Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with " + OwnGazeManager.Instance.currentFocusedChapter.name);
                 Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedChapter);
-                Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedReset);
             }
         }
     }

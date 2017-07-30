@@ -87,13 +87,30 @@ public class AtomUIStateController : MonoBehaviour
         transform.LookAt(Camera.main.transform.position);
     }
 
+    public void ChangeLocalViewTo3D(bool to3D)
+    {
+        if (to3D)
+        {
+            ChangeView(new ChangeViewToClassic3DCommand(_projector.GetProjectedAtom()), _classic3DButton);
+            return;
+        }
+
+        Atom projAtom = _projector.GetProjectedAtom();
+        Vector3 directionToCamera = Camera.main.transform.position - projAtom.transform.position;
+        ChangeView(new ChangeViewToClassic2DCommand(_projector.GetProjectedAtom(), directionToCamera), _classic2DButton);
+    }
+
     public void ChangeViewToClassic3D()
     {
+        SV_Sharing.Instance.SendBool(true, "change_view_to_3d");
+
         ChangeView(new ChangeViewToClassic3DCommand(_projector.GetProjectedAtom()), _classic3DButton);
     }
 
     public void ChangeViewToClassic2D()
     {
+        SV_Sharing.Instance.SendBool(false, "change_view_to_2d");
+
         Atom projAtom = _projector.GetProjectedAtom();
         Vector3 directionToCamera = Camera.main.transform.position - projAtom.transform.position;
         ChangeView(new ChangeViewToClassic2DCommand(_projector.GetProjectedAtom(), directionToCamera), _classic2DButton);
