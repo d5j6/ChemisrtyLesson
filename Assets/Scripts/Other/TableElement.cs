@@ -47,10 +47,9 @@ public class TableElement : MonoBehaviour, IInteractive
     public void OnGazeEnter()
     {
         Debug.Log("!Gaze entered at " + _atomName);
-        if(_isSelected)
-        {
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart ||
+            _isSelected)
             return;
-        }
 
         _elementText.color = _highlightColor;
 
@@ -59,6 +58,10 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void OnGazeLeave()
     {
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart ||
+            _isSelected)
+            return;
+
         Debug.Log("Gaze left at " + _atomName);
         CanselHighlighting();
 
@@ -68,19 +71,15 @@ public class TableElement : MonoBehaviour, IInteractive
     public void HighlightElement()
     {
         if (_isSelected)
-        {
             return;
-        }
 
         _elementText.color = _highlightColor;
     }
 
     public void CanselHighlighting()
     {
-        if(_isSelected)
-        {
+        if (_isSelected)
             return;
-        }
 
         _elementText.color = _selfColor;
     }
@@ -89,7 +88,10 @@ public class TableElement : MonoBehaviour, IInteractive
     {
         Debug.Log("!Tapped the element " + _atomName);
 
-        if(!_isSelected)
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart)
+            return;
+
+        if (!_isSelected)
         {
             Select();
         }

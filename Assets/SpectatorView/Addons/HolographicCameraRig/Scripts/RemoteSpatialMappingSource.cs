@@ -51,6 +51,7 @@ namespace SpectatorView
             }
 
             GameObject surfaceObject = AddSurfaceObject(mesh, "RemoteSpatialMapping", transform);
+            //var surfaceObject = CreateSurfaceObject(mesh, "RemoteSpatialMapping", transform);
             surfaceObject.transform.localPosition = Vector3.zero;
             surfaceObject.transform.localRotation = Quaternion.identity;
 

@@ -91,6 +91,8 @@ public class SV_HandlerBankEvents : SpectatorView.SV_Singleton<SV_HandlerBankEve
 
     public void OnInt(SV_Sharing.SharingData data)
     {
+        var skipGidButton = PlayerManager.Instance.SkipGidButton;
+
         switch (data.tag)
         {            
             case "highlight_element":
@@ -127,27 +129,19 @@ public class SV_HandlerBankEvents : SpectatorView.SV_Singleton<SV_HandlerBankEve
                 break;
 
             case "SGB_change_to_demonstration":
-                var SGB_ToDemo = DataManager.Instance.SkipGidButton;
-                var SGB_ToDemonstration = SGB_ToDemo;
-                SGB_ToDemonstration.ChangeStrategyToDemonstration();
+                skipGidButton.ChangeStrategyToDemonstration();
                 break;
 
             case "SGB_change_to_standart":
-                var SGB_ToStd = DataManager.Instance.SkipGidButton;
-                var SGB_ToStandart = SGB_ToStd;
-                SGB_ToStandart.ChangeStrategyToStandart();
+                skipGidButton.ChangeStrategyToStandart();
                 break;
 
             case "SGB_highlight":
-                var SGB_highlight = DataManager.Instance.SkipGidButton;
-                var SGB_HighLight = SGB_highlight;
-                SGB_HighLight.HighLightOnGazeEnter();
+                skipGidButton.HighLightOnGazeEnter();
                 break;
 
             case "SGB_dehighlight":
-                var SGB_dehighlight = DataManager.Instance.SkipGidButton;
-                var SGB_deHighLight = SGB_dehighlight;
-                SGB_deHighLight.HighLightOnGazeLeave();
+                skipGidButton.HighLightOnGazeLeave();
                 break;
         }
     }

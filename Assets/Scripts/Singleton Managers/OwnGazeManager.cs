@@ -30,6 +30,11 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
 
         public void Alghorithm()
         {
+            //Additional by HSE
+            //Clearing fields to avoid saving data about objects from Demonstration mode
+            _ownGaze.currentFocusedChapter = null;
+            _ownGaze.currentFocusedReset = null;
+
             RaycastHit hitInfo = _ownGaze.hitInfo;
             bool isHit = Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out hitInfo, 32f);
             _ownGaze.IsGazingAtObject = isHit;
@@ -188,6 +193,7 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
             //    _ownGaze._hitObjectType = HitObjectType.None;
             //}
 
+            //Additional by HSE
             //Clearing currentFocused to avoid saving data about objects from Standart mode
             _ownGaze.currentFocused = null;
 
@@ -459,8 +465,28 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
             _currentFocused = value;
         }
     }
-    public BtnTap currentFocusedChapter { get { return _currentFocusedChapter; } }
-    public SkipGidButton currentFocusedReset { get { return _currentFocusedReset; } }
+    public BtnTap currentFocusedChapter
+    {
+        get
+        {
+            return _currentFocusedChapter;
+        }
+        protected set
+        {
+            _currentFocusedChapter = value;
+        }
+    }
+    public SkipGidButton currentFocusedReset
+    {
+        get
+        {
+            return _currentFocusedReset;
+        }
+        protected set
+        {
+            _currentFocusedReset = value;
+        }
+    }
 
     private HitObjectType _hitObjectType;
     public HitObjectType hitObjectType { get { return _hitObjectType; } }

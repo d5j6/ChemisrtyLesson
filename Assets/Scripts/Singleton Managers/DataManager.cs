@@ -9,15 +9,6 @@ public class DataManager : Singleton<DataManager>
     private Dictionary<int, GameObject> interactiveObjects = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> menuChapters = new Dictionary<int, GameObject>();
 
-    private SkipGidButton skipGidButton;
-    public SkipGidButton SkipGidButton
-    {
-        get
-        {
-            return skipGidButton;
-        }
-    }
-
     private bool _isInitialized;
 
     public void Initialize()
@@ -54,7 +45,6 @@ public class DataManager : Singleton<DataManager>
                 interactiveObjects.Add(idHolder.ID, idHolder.gameObject);
         }
         Debug.Log("!Added " + interactiveObjects.Count + " elements");
-        skipGidButton = GameObject.FindObjectOfType<SkipGidButton>();
     }
 
     public GameObject GetInteractiveObject(int ID)

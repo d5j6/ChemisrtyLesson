@@ -47,8 +47,11 @@ public class BtnTap : MonoBehaviour, IInteractive
 
     public void OnGestureTap()
     {
-        Debug.Log("!BtnTap tapped");
-        RunAnumation();
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration)
+        {
+            Debug.Log("!BtnTap tapped");
+            RunAnumation();
+        }
     }
 
     public void RunAnumation(bool fromSharing = false)
@@ -56,7 +59,8 @@ public class BtnTap : MonoBehaviour, IInteractive
         //if (!CutsceneManager.Instance.isStop)
         {
             Debug.Log("!Animation started");
-            CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName, btnTap: this);
+            //CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName, btnTap: this);
+            CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName);
             if (!fromSharing)
                 SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "run_animation");
         }
@@ -64,23 +68,21 @@ public class BtnTap : MonoBehaviour, IInteractive
 
     public void OnGazeEnter()
     {
-        if (!isActiveBtn)
-        {
-            Debug.Log("");
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration &&
+            !isActiveBtn)
             HighlightMenuItem();
-        }
     }
 
 
     public void OnGazeLeave()
     {
-        if (!isActiveBtn)
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration &&
+            !isActiveBtn)
             DehighlightMenuItem();
     }
 
     public void DeactivateButton(string chaptersName)
     {
-
         _text.color = Color.white;
         isActiveBtn = false;
     }

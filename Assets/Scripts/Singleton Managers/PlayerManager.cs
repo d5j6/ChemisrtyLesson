@@ -232,6 +232,8 @@ public class PlayerManager : Singleton<PlayerManager>
     private PeriodicTable periodicTable;
 
     private ProjectorController projector;
+
+    private SkipGidButton skipGidButton;
     #endregion
 
     #region Properties
@@ -240,6 +242,8 @@ public class PlayerManager : Singleton<PlayerManager>
     public PeriodicTable PeriodicTable { get { return periodicTable; } }
 
     public ProjectorController Projector { get { return projector; } }
+
+    public SkipGidButton SkipGidButton { get { return skipGidButton; } }
     #endregion
 
     #region Initialize and Start methods
@@ -262,6 +266,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
         periodicTable = GameObject.FindObjectOfType<PeriodicTable>();
         projector = GameObject.FindObjectOfType<ProjectorController>();
+        skipGidButton = GameObject.FindObjectOfType<SkipGidButton>();
     }
     #endregion
 
@@ -314,7 +319,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void ChangeStateToStandart()
     {
-        if (!CutsceneManager.Instance.isStop)
+        if (!CutsceneManager.Instance.IsStop)
         {
             CutsceneManager.Instance.StopCutscene();
             CutsceneManager.Instance.DeactivateButton();
