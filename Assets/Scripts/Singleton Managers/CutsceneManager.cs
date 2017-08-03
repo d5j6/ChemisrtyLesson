@@ -160,7 +160,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
 
         if (baseGID2 != null)
         {
-            baseGID2.Stop(Cutscene.StopMode.SkipRewindNoUndo);
+            baseGID2.Stop(Cutscene.StopMode.Rewind);
             //return;
         }
 
@@ -188,27 +188,22 @@ public class CutsceneManager : Singleton<CutsceneManager>
     }
 
     private void Update()
-    {
+    { 
+    //    if (Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        //PlaySectionNow("Test1");
+    //        NextChapter();
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            //PlaySectionNow("Test1");
-            NextChapter();
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            //PlaySectionNow("Test1");
-            PreviewsChapter();
-        }
-
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        //PlaySectionNow("Test1");
+    //        PreviewsChapter();
+    //    }
     }
 
     public void PlaySectionNow(bool playAllSections = false, string sectionName = "", bool playDemo = false)
     {
-        foreach (var chapter in chaptersDictionary)
-            Debug.Log("!Dictionary: " + chapter.Key);
-
         Debug.Log("!" + sectionName);
         if (chaptersDictionary.ContainsKey(sectionName))
         {
@@ -221,23 +216,28 @@ public class CutsceneManager : Singleton<CutsceneManager>
     {
         Cutscene cutscene = chaptersDictionary[sectionName];
 
-        if (cutscene == baseGID2)
-            if (currentCutscene != baseGID2)
+        try
+        {
+            Debug.Log("!Cutscene: " + cutscene.name);
+            Debug.Log("!currentCutscene: " + currentCutscene.name);
+            Debug.Log("!PLayingControl: " + sectionName);
+        }
+        catch { }
+
+        if (cutscene.name == baseGID2.name)
+            if (currentCutscene.name != baseGID2.name)
             {
                 SkipFirstCutSceneForInit();
                 currentCutscene = baseGID2;
             }
             else
                 currentCutscene = baseGID1;
-
-
+        
         IsStop = false;
-
-        StartCoroutine(ChangeChapterDelay(sectionName));
 
         currentSectionName = sectionName;
 
-        Debug.Log("!PLayingControl: " + sectionName + " in cutscene" + cutscene.name);
+        StartCoroutine(ChangeChapterDelay(sectionName));
     }
 
     public void ChangeCutsceneState()
@@ -262,7 +262,6 @@ public class CutsceneManager : Singleton<CutsceneManager>
         {
             item.ActivateButton(sectionName);
         }
-
 
         if (!fromSharing)
             SV_Sharing.Instance.SendBool(true, "activate_menu_items");
@@ -346,7 +345,6 @@ public class CutsceneManager : Singleton<CutsceneManager>
         }
         else
         {
-
             if (!IsStop)
             {
                 SkipCutscene(sectionName);

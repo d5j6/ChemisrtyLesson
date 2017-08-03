@@ -48,18 +48,18 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
                 _ownGaze.HitObject = hitInfo.collider.gameObject;
 
                 IInteractive newFocused = hitInfo.transform.GetComponent<IInteractive>();
-                if(newFocused != null)
+                if (newFocused != null)
                 {
                     _ownGaze._hitObjectType = HitObjectType.Interactive;
 
-                    if(_ownGaze._currentFocused == newFocused)
+                    if (_ownGaze._currentFocused == newFocused)
                     {
                         return;
                     }
 
-                    if(_ownGaze._currentFocused != null)
+                    if (_ownGaze._currentFocused != null)
                     {
-                        if(_ownGaze.onGazeLeaveFromInteractiveEvent != null)
+                        if (_ownGaze.onGazeLeaveFromInteractiveEvent != null)
                         {
                             _ownGaze.onGazeLeaveFromInteractiveEvent.Invoke(_ownGaze._currentFocused);
                         }
@@ -67,14 +67,14 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
 
                     _ownGaze._currentFocused = newFocused;
 
-                    if(_ownGaze.onGazeEnterToInteractiveEvent != null)
+                    if (_ownGaze.onGazeEnterToInteractiveEvent != null)
                     {
                         _ownGaze.onGazeEnterToInteractiveEvent.Invoke(_ownGaze._currentFocused);
                     }
                 }
                 else
                 {
-                    if(hitInfo.transform.gameObject.layer == _spartialMeshLayer)
+                    if (hitInfo.transform.gameObject.layer == _spartialMeshLayer)
                     {
                         _ownGaze._hitObjectType = HitObjectType.Spatial;
                     }
@@ -89,16 +89,16 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
                 _ownGaze._hitObjectType = HitObjectType.None;
             }
 
-            if(_ownGaze.hitObjectType != HitObjectType.Interactive)
+            if (_ownGaze.hitObjectType != HitObjectType.Interactive)
             {
-                if(_ownGaze._currentFocused != null)
+                if (_ownGaze._currentFocused != null)
                 {
-                    if(_ownGaze.onGazeLeaveFromInteractiveEvent != null)
+                    if (_ownGaze.onGazeLeaveFromInteractiveEvent != null)
                     {
                         _ownGaze.onGazeLeaveFromInteractiveEvent.Invoke(_ownGaze._currentFocused);
                     }
 
-                    _ownGaze._currentFocused = null; 
+                    _ownGaze._currentFocused = null;
                 }
             }
         }
@@ -121,20 +121,20 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
         {
             bool isHit = Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out hitInfo, 32f);
 
-            if(isHit)
+            if (isHit)
             {
                 _ownGaze._hitPoint = hitInfo.point;
                 _ownGaze._pointNormal = hitInfo.normal;
 
                 _ownGaze._hitObjectType = HitObjectType.Default;
 
-                if(hitInfo.transform.gameObject.layer == _spartialMeshLayer)
+                if (hitInfo.transform.gameObject.layer == _spartialMeshLayer)
                 {
                     _ownGaze._hitObjectType = HitObjectType.Spatial;
                 }
                 else
                 {
-                    if(hitInfo.transform.GetComponent<IInteractive>() != null)
+                    if (hitInfo.transform.GetComponent<IInteractive>() != null)
                     {
                         _ownGaze._hitObjectType = HitObjectType.Interactive;
                     }
@@ -163,45 +163,16 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
 
         public void Alghorithm()
         {
-            //bool isHit = Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out hitInfo, 32f);
-
-            //if(isHit)
-            //{
-            //    _ownGaze._hitPoint = hitInfo.point;
-            //    _ownGaze._pointNormal = hitInfo.normal;
-
-            //    _ownGaze._hitObjectType = HitObjectType.Default;
-
-            //    if(hitInfo.transform.gameObject.layer == _spatialMeshLayer)
-            //    {
-            //        _ownGaze._hitObjectType = HitObjectType.Spatial;
-            //    }
-            //    else
-            //    {
-            //        if(hitInfo.transform.gameObject.layer == _demonstrationLayer)
-            //        {
-            //            if(hitInfo.transform.GetComponent<IInteractive>() != null)
-            //            {
-            //                _ownGaze._hitObjectType = HitObjectType.Interactive;
-            //                _ownGaze._currentFocused = hitInfo.transform.GetComponent<IInteractive>();
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    _ownGaze._hitObjectType = HitObjectType.None;
-            //}
-
             //Additional by HSE
             //Clearing currentFocused to avoid saving data about objects from Standart mode
             _ownGaze.currentFocused = null;
 
             RaycastHit hitInfo = _ownGaze.hitInfo;
             bool isHit = Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out hitInfo, 32f);
+
             _ownGaze.IsGazingAtObject = isHit;
 
-            if(isHit)
+            if (isHit)
             {
                 _ownGaze._hitPoint = hitInfo.point;
                 _ownGaze._pointNormal = hitInfo.normal;
@@ -212,61 +183,50 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
                 BtnTap newFocused = hitInfo.transform.GetComponent<BtnTap>();
                 SkipGidButton newFocusedReset = hitInfo.transform.GetComponent<SkipGidButton>();
 
-                Debug.Log("Standart Gaze");
-
                 bool objectOnDemostrationlayer = hitInfo.transform.gameObject.layer == _demonstrationLayer;
 
-                if(newFocused != null && objectOnDemostrationlayer)
+                //Gaze detected a chapter in menu
+                if (newFocused != null &&
+                    objectOnDemostrationlayer)
                 {
                     _ownGaze._hitObjectType = HitObjectType.Interactive;
 
-                    if(_ownGaze._currentFocusedChapter == newFocused)
-                    {
+                    if (_ownGaze._currentFocusedChapter == newFocused)
                         return;
-                    }
 
-                    if(_ownGaze._currentFocusedChapter != null)
-                    {
-                        if(_ownGaze.onGazeLeaveFromInteractiveEvent != null)
-                        {
+                    if (_ownGaze._currentFocusedChapter != null)
+                        if (_ownGaze.onGazeLeaveFromInteractiveEvent != null)
                             _ownGaze.onGazeLeaveFromInteractiveEvent.Invoke(_ownGaze._currentFocusedChapter);
-                        }
-                    }
 
                     _ownGaze._currentFocusedChapter = newFocused;
 
-                    if(_ownGaze.onGazeEnterToInteractiveEvent != null)
-                    {
+                    if (_ownGaze.onGazeEnterToInteractiveEvent != null)
                         _ownGaze.onGazeEnterToInteractiveEvent.Invoke(_ownGaze._currentFocusedChapter);
-                    }
                 }
-                else if(newFocusedReset != null && objectOnDemostrationlayer)
+                //Gaze detected a skipGidButton
+                else if (newFocusedReset != null &&
+                    objectOnDemostrationlayer)
                 {
                     _ownGaze._hitObjectType = HitObjectType.Interactive;
 
                     if (_ownGaze._currentFocusedReset == newFocusedReset)
-                    {
                         return;
-                    }
 
                     if (_ownGaze._currentFocusedReset != null)
-                    {
                         if (_ownGaze.onGazeLeaveFromInteractiveEvent != null)
-                        {
                             _ownGaze.onGazeLeaveFromInteractiveEvent.Invoke(_ownGaze._currentFocusedReset);
-                        }
-                    }
 
                     _ownGaze._currentFocusedReset = newFocusedReset;
 
                     if (_ownGaze.onGazeEnterToInteractiveEvent != null)
-                    {
                         _ownGaze.onGazeEnterToInteractiveEvent.Invoke(_ownGaze._currentFocusedReset);
-                    }
                 }
+
+                //Gaze could not detect neither chapterMenu, nor skipGidButton
                 else
                 {
-                    if(hitInfo.transform.gameObject.layer == _spatialMeshLayer)
+                    //Defining hitObjectType
+                    if (hitInfo.transform.gameObject.layer == _spatialMeshLayer)
                     {
                         _ownGaze._hitObjectType = HitObjectType.Spatial;
                     }
@@ -277,20 +237,26 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
                 }
             }
             else
-            {
                 _ownGaze._hitObjectType = HitObjectType.None;
-            }
 
-            if(_ownGaze.hitObjectType != HitObjectType.Interactive)
+            if (_ownGaze.hitObjectType != HitObjectType.Interactive)
             {
-                if(_ownGaze._currentFocusedReset != null)
+                //Gaze lost the skipGidButton, but it has been detected before
+                if (_ownGaze._currentFocusedReset != null)
                 {
-                    if(_ownGaze.onGazeLeaveFromInteractiveEvent != null)
-                    {
+                    if (_ownGaze.onGazeLeaveFromInteractiveEvent != null)
                         _ownGaze.onGazeLeaveFromInteractiveEvent.Invoke(_ownGaze._currentFocusedReset);
-                    }
 
                     _ownGaze._currentFocusedReset = null;
+                }
+
+                //Gaze lost the chapter, but it has been detected before
+                if (_ownGaze._currentFocusedChapter != null)
+                {
+                    if (_ownGaze.onGazeLeaveFromInteractiveEvent != null)
+                        _ownGaze.onGazeLeaveFromInteractiveEvent.Invoke(_ownGaze._currentFocusedChapter);
+
+                    _ownGaze._currentFocusedChapter = null;
                 }
             }
         }
@@ -521,7 +487,7 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
 
     public void ChangeStrategyToDragAndDrop()
     {
-        if(_currentFocused != null)
+        if (_currentFocused != null)
         {
             onGazeLeaveFromInteractiveEvent.Invoke(_currentFocused);
         }
@@ -535,7 +501,7 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
 
     public void ChangeStrategyDemonstration()
     {
-        if(_currentFocusedChapter != null)
+        if (_currentFocusedChapter != null)
         {
             onGazeLeaveFromInteractiveEvent.Invoke(_currentFocusedChapter);
         }
@@ -554,7 +520,7 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
 
     public void Initialize()
     {
-        if(_isInitialized)
+        if (_isInitialized)
         {
             return;
         }
@@ -567,7 +533,7 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
     void Update()
     {
         Debug.Log(_strategyName);
-        if(_strategy != null)
+        if (_strategy != null)
             _strategy.Alghorithm();
     }
 }

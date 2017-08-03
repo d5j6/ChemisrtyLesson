@@ -480,7 +480,8 @@ GameObject:
   - component: {fileID: 222312385010117316}
   - component: {fileID: 114411597281527318}
   - component: {fileID: 65596378105824030}
-  - component: {fileID: 114402914335822018}
+  - component: {fileID: 114692716237315736}
+  - component: {fileID: 114624768974021108}
   m_Layer: 8
   m_Name: Demo
   m_TagString: Untagged
@@ -910,7 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 2
+  ID: 5
 --- !u!114 &114088459332601852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1277,7 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: 4
 --- !u!114 &114360185133343992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1329,23 +1330,6 @@ MonoBehaviour:
   m_Text: '6
 
 '
---- !u!114 &114402914335822018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1732594819719870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1260c1ac5ce7a52419798d358209425f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _allowedTypes: 00000000
-  _text: {fileID: 0}
-  _selfColor: {r: 0, g: 0, b: 0, a: 0}
-  _highlightColor: {r: 1, g: 1, b: 1, a: 1}
-  _duration: 0.5
-  periodicTable: {fileID: 0}
 --- !u!114 &114411597281527318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1648,6 +1632,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 2
+--- !u!114 &114624768974021108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732594819719870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 1
 --- !u!114 &114637266613863814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1730,6 +1726,22 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: The periodic table of elements. General information
+--- !u!114 &114692716237315736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732594819719870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84185288638cdd48b063fb9bb0d937d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chapterName: 
+  _allowedActions: 00000000
+  _selfColor: {r: 1, g: 1, b: 1, a: 0}
+  _highlightColor: {r: 0.2, g: 0.6, b: 0.8, a: 1}
+  _duration: 0.1
 --- !u!114 &114784269633790368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1855,7 +1867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 5
+  ID: 7
 --- !u!114 &114863740682587798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2096,7 +2108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 4
+  ID: 2
 --- !u!114 &114975736096305506
 MonoBehaviour:
   m_ObjectHideFlags: 1

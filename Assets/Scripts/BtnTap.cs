@@ -50,17 +50,25 @@ public class BtnTap : MonoBehaviour, IInteractive
         if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration)
         {
             Debug.Log("!BtnTap tapped");
-            RunAnumation();
+                RunAnumation();
         }
     }
 
     public void RunAnumation(bool fromSharing = false)
     {
-        //if (!CutsceneManager.Instance.isStop)
+        //if (!CutsceneManager.Instance.IsStop)
         {
-            Debug.Log("!Animation started");
-            //CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName, btnTap: this);
-            CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName);
+            if (gameObject.name == "Demo")
+            {
+                Debug.Log("!Animation started");
+                CutsceneManager.Instance.PlaySectionNow(playAllSections: true);
+            }
+            else
+            {
+                Debug.Log("!Animation started");
+                CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName);
+            }
+
             if (!fromSharing)
                 SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "run_animation");
         }

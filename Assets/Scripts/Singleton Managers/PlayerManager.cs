@@ -314,6 +314,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void ChangeStateToDemonstration()
     {
+        CutsceneManager.Instance.ActivateButton();
         _state.ChangeStateToDemonstration();
     }
 
