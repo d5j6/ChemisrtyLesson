@@ -57,21 +57,25 @@ public class BtnTap : MonoBehaviour, IInteractive
     public void RunAnumation(bool fromSharing = false)
     {
         //if (!CutsceneManager.Instance.IsStop)
+        switch(gameObject.name)
         {
-            if (gameObject.name == "Demo")
-            {
+            case "Demo":
                 Debug.Log("!Play all animation started");
                 CutsceneManager.Instance.PlaySectionNow(playAllSections: true);
-            }
-            else
-            {
+                break;
+            case "Stop":
+                Debug.Log("!Stop lesson");
+                CutsceneManager.Instance.SkipCutscene();
+                CutsceneManager.Instance.StopCutscene();
+                break;
+            default:
                 Debug.Log("!Animation started");
                 CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName);
-            }
-
-            if (!fromSharing)
-                SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "run_animation");
+                break;
         }
+
+        if (!fromSharing)
+            SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "run_animation");
     }
 
     public void OnGazeEnter()

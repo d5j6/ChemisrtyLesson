@@ -271,13 +271,15 @@ GameObject:
   - component: {fileID: 222889603053244212}
   - component: {fileID: 114165185514032736}
   - component: {fileID: 65471464690499134}
+  - component: {fileID: 114370352204774806}
+  - component: {fileID: 114422274115566424}
   m_Layer: 8
-  m_Name: Chapter 7
+  m_Name: Stop
   m_TagString: Skip Demo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1358684109849226
 GameObject:
   m_ObjectHideFlags: 1
@@ -1066,7 +1068,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Skip demo
+  m_Text: Stop lesson
 --- !u!114 &114234975701352486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1278,7 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 4
+  ID: 8
 --- !u!114 &114360185133343992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1330,6 +1332,22 @@ MonoBehaviour:
   m_Text: '6
 
 '
+--- !u!114 &114370352204774806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356771375195648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84185288638cdd48b063fb9bb0d937d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chapterName: 
+  _allowedActions: 00000000
+  _selfColor: {r: 1, g: 1, b: 1, a: 1}
+  _highlightColor: {r: 0.2, g: 0.6, b: 0.8, a: 1}
+  _duration: 0.1
 --- !u!114 &114411597281527318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1357,6 +1375,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114422274115566424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356771375195648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 1
 --- !u!114 &114466681255261830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1643,7 +1673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: 6
 --- !u!114 &114637266613863814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1739,7 +1769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterName: 
   _allowedActions: 00000000
-  _selfColor: {r: 1, g: 1, b: 1, a: 0}
+  _selfColor: {r: 1, g: 1, b: 1, a: 1}
   _highlightColor: {r: 0.2, g: 0.6, b: 0.8, a: 1}
   _duration: 0.1
 --- !u!114 &114784269633790368
@@ -1867,7 +1897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 7
+  ID: 3
 --- !u!114 &114863740682587798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2057,7 +2087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 3
+  ID: 4
 --- !u!114 &114928408326274924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2069,7 +2099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 6
+  ID: 2
 --- !u!114 &114939421307272842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2108,7 +2138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91b25f6effecd942a8cfb50032178da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 2
+  ID: 7
 --- !u!114 &114975736096305506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2195,9 +2225,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Demo
-
-'
+  m_Text: Play All
 --- !u!212 &212690676709134208
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -2995,7 +3023,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1356771375195648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00016367444}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9999996, y: 0.9999996, z: 0.9999996}
   m_Children:
   - {fileID: 224326700211737372}
