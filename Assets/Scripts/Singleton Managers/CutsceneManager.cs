@@ -1,107 +1,133 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using Slate;
+using System.Collections.Generic;
 
 public class CutsceneManager : Singleton<CutsceneManager>
 {
-    public static bool _isPlaying;
+    #region Private Fields
 
     [SerializeField]
-    private Cutscene _baseGID1;
+    private Cutscene baseGID1;
     [SerializeField]
-    private Cutscene _baseGID2;
+    private Cutscene baseGID2;
     [SerializeField]
-    private Cutscene _baseGIDEnd;
+    private Cutscene baseGIDEnd;
     [SerializeField]
-    private Cutscene _utilCutscene;
+    private Cutscene utilCutscene;
 
-    private Cutscene _currentCutscene;
-    public bool baseGid1SectionFound;
-    private bool isSkipped = false;
+    private Cutscene currentCutscene;
+
     private string nextChapterForPlay;
     private string currentSectionName;
+
     private string[] allSections;
-    private string[] _baseGid1Sections;
-    private string[] _baseGid2Sections;
-    private string[] _baseGidEndSections;
-    //public static bool canPlay = true;
-    private TableElement[] test;
-    public bool isStop;
+    private string[] baseGid1Sections;
+    private string[] baseGid2Sections;
+    private string[] baseGidEndSections;
+
+    private Dictionary<string, Cutscene> chaptersDictionary;
+
+    private bool isSkipped = false;
+
+    #endregion
+
+    #region Public Properties
+
+    public static bool IsPlaying { get; set; }
+    public bool BaseGid1SectionFound { get; set; }
+    public bool IsStop { get; set; }
+
+    #endregion
 
     private void Test()
-    {        
+    {
         if (!isSkipped)
         {
             Debug.Log("SecondCutscene");
-            _baseGID2.Play(() => { Debug.Log("BASE 2"); _baseGIDEnd.Play(() => { ActivateButton(); SkipCutscene(); }); _currentCutscene = _baseGIDEnd; _isPlaying = true; }); _baseGID2.JumpToSection("Groups and periods"); _currentCutscene = _baseGID2;
+            baseGID2.Play(() => { Debug.Log("BASE 2"); baseGIDEnd.Play(() => { ActivateButton(); SkipCutscene(); }); currentCutscene = baseGIDEnd; IsPlaying = true; }); baseGID2.JumpToSection("Groups and periods"); currentCutscene = baseGID2;
         }
+    }
+
+    private void InitializeChapters()
+    {
+        chaptersDictionary = new Dictionary<string, Cutscene>();
+
+        foreach (string chapterName in baseGID1.GetSectionNames())
+            chaptersDictionary.Add(chapterName, baseGID1);
+
+        foreach (string chapterName in baseGID2.GetSectionNames())
+            chaptersDictionary.Add(chapterName, baseGID2);
+
+        foreach (string chapterName in baseGIDEnd.GetSectionNames())
+            chaptersDictionary.Add(chapterName, baseGIDEnd);
     }
 
     void Start()
     {
+        InitializeChapters();
+
         Cutscene.OnCutsceneStopped += Cutscene_OnCutsceneStopped;
-        _baseGid1Sections = _baseGID1.GetSectionNames();
-        _baseGid2Sections = _baseGID2.GetSectionNames();
-        _baseGidEndSections = _baseGIDEnd.GetSectionNames();
+        baseGid1Sections = baseGID1.GetSectionNames();
+        baseGid2Sections = baseGID2.GetSectionNames();
+        baseGidEndSections = baseGIDEnd.GetSectionNames();
 
-        allSections = new string[_baseGid1Sections.Length + _baseGid2Sections.Length + _baseGidEndSections.Length];
+        allSections = new string[baseGid1Sections.Length + baseGid2Sections.Length + baseGidEndSections.Length];
 
-        for (int i = 0; i < _baseGid1Sections.Length; i++)
+        for (int i = 0; i < baseGid1Sections.Length; i++)
         {
-            allSections[i] = _baseGid1Sections[i];
+            allSections[i] = baseGid1Sections[i];
         }
 
-        for (int i = 0; i < _baseGid2Sections.Length; i++)
+        for (int i = 0; i < baseGid2Sections.Length; i++)
         {
-            allSections[i + _baseGid1Sections.Length] = _baseGid2Sections[i];
+            allSections[i + baseGid1Sections.Length] = baseGid2Sections[i];
         }
 
-        for (int i = 0; i < _baseGidEndSections.Length; i++)
+        for (int i = 0; i < baseGidEndSections.Length; i++)
         {
-            //	allSections [i] = _baseGidEndSections [i];
-            allSections[i + _baseGid2Sections.Length + _baseGid1Sections.Length] = _baseGid2Sections[i];
+            allSections[i + baseGid2Sections.Length + baseGid1Sections.Length] = baseGidEndSections[i];
         }
-
-        test = GameObject.FindObjectsOfType<TableElement>();
     }
 
     private void Cutscene_OnCutsceneStopped(Cutscene obj)
     {
-        _isPlaying = false;
+        IsPlaying = false;
 
         if (obj.name == "BaseGIDCutsceneEnd")
         {
-            _baseGIDEnd.RewindNoUndo();
-            _baseGID2.RewindNoUndo();
-            _baseGID1.RewindNoUndo();
+            baseGIDEnd.RewindNoUndo();
+            baseGID2.RewindNoUndo();
+            baseGID1.RewindNoUndo();
         }
     }
 
     public void StopCutscene()
     {
-        isStop = true;
+        IsStop = true;
 
-        if (_currentCutscene != null)
+        if (currentCutscene != null)
         {
-            _currentCutscene.Stop();
-            return;
-        }
-        
-        if (_baseGID1 != null && _baseGID1.isActive)
-        {
-            _baseGID1.Stop(Cutscene.StopMode.Skip);
+            currentCutscene.Stop();
             return;
         }
 
-        if (_baseGID2 != null && _baseGID2.isActive)
+        if (baseGID1 != null && baseGID1.isActive)
         {
-            _baseGID2.Stop(Cutscene.StopMode.Skip);
+            baseGID1.Stop(Cutscene.StopMode.Skip);
             return;
         }
 
-        if (_baseGIDEnd != null && _baseGIDEnd.isActive)
+        if (baseGID2 != null && baseGID2.isActive)
         {
-            _baseGIDEnd.Stop(Cutscene.StopMode.Skip);
+            baseGID2.Stop(Cutscene.StopMode.Rewind);
+            return;
+        }
+
+        if (baseGIDEnd != null && baseGIDEnd.isActive)
+        {
+            baseGIDEnd.Stop(Cutscene.StopMode.Skip);
             return;
         }
     }
@@ -109,232 +135,162 @@ public class CutsceneManager : Singleton<CutsceneManager>
     public void PlayBaseGIDCutscene1()
     {
         isSkipped = false;
-        _currentCutscene = _baseGID1;
-        _baseGID1.Play(() => { Debug.Log("!PlayBaseGIDCutscene1"); Test(); });
+        currentCutscene = baseGID1;
+        baseGID1.Play(() => {  Test(); });
         //DeactivateButton();
     }
 
     public void PlayBaseGIDCutscene2(string sectionName = "")
     {
-        _isPlaying = true;
+        IsPlaying = true;
 
-        _baseGID2.Play();
+        baseGID2.Play();
         if (!string.IsNullOrEmpty(sectionName))
-            _baseGID2.JumpToSection(sectionName);
+            baseGID2.JumpToSection(sectionName);
 
-        _currentCutscene = _baseGID2;
+        currentCutscene = baseGID2;
     }
 
     public void SkipCutscene(string sectionName = "")
     {
         isSkipped = true;
-        _isPlaying = true;
+        IsPlaying = true;
 
         DeactivateButton(sectionName);
 
-        if (_baseGID2 != null)
+        if (baseGID2 != null)
         {
-            _baseGID2.Stop(Cutscene.StopMode.SkipRewindNoUndo);
-            //return;
+            baseGID2.Stop(Cutscene.StopMode.SkipRewindNoUndo);
         }
 
-        if (!_isPlaying)
+        if (!IsPlaying)
         {
             return;
         }
 
-        if (_currentCutscene != null)
+        if (currentCutscene != null)
         {
-            if (_currentCutscene == _baseGID1)
+            if (currentCutscene == baseGID1)
             {
-                _currentCutscene.Stop(Cutscene.StopMode.Skip);
+                currentCutscene.Stop(Cutscene.StopMode.Skip);
             }
             else
             {
-                _currentCutscene.Stop(Cutscene.StopMode.Rewind);
+                currentCutscene.Stop(Cutscene.StopMode.Rewind);
             }
 
-            _currentCutscene.Stop();
+            currentCutscene.Stop();
         }
 
-
-
-        //        }
-        //        else
-        //        {
-        //            _currentCutscene.Stop(Cutscene.StopMode.Rewind);
-        //        }
-        //
         Destroy(GameObject.Find("_AudioSources"));
         ActivateButton();
-        //switch (_currentCutscene.name)
-        //{
-        //    case "BaseGIDCutsceneN1":
-        //    case "BaseGIDCutsceneN2":
-        //        _baseGIDEnd.Play();
-        //        break;
-        //}
     }
 
     private void Update()
     {
+        //    if (Input.GetKeyDown(KeyCode.L))
+        //    {
+        //        //PlaySectionNow("Test1");
+        //        NextChapter();
+        //    }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            //PlaySectionNow("Test1");
-            NextChapter();
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            //PlaySectionNow("Test1");
-            PreviewsChapter();
-        }
-
+        //    if (Input.GetKeyDown(KeyCode.K))
+        //    {
+        //        //PlaySectionNow("Test1");
+        //        PreviewsChapter();
+        //    }
     }
 
-    public void PlaySectionNow(bool playAllSections = false, string sectionName = "", BtnTap btnTap = null, bool playDemo = false)
+    public void PlaySectionNow(bool playAllSections = false, string sectionName = "", bool playDemo = false)
     {
-        //Debug.Log("Click");
-        //        string[] _baseGid1Sections = _baseGID1.GetSectionNames();
-        //        string[] _baseGid2Sections = _baseGID2.GetSectionNames();
-        //        string[] _baseGidEndSections = _baseGIDEnd.GetSectionNames();
-        //
-        baseGid1SectionFound = false;
-        bool _baseGid2SectionFound = false;
-        bool _baseGidEndSectionFound = false;
+        if (sectionName == "")
+            sectionName = allSections[0];
 
-        foreach (string item in _baseGid1Sections)
+        Debug.Log("!" + sectionName);
+
+        if (chaptersDictionary.ContainsKey(sectionName))
         {
-            if (sectionName == item)
-            {
-                baseGid1SectionFound = true;
-            }
+            Debug.Log("!SectionName key was found: " + sectionName);
+            PlayingControll(sectionName, playDemo);
         }
-
-        foreach (string item in _baseGid2Sections)
-        {
-            if (sectionName == item)
-            {
-                _baseGid2SectionFound = true;
-            }
-        }
-
-        foreach (string item in _baseGidEndSections)
-        {
-            if (sectionName == item)
-            {
-                _baseGidEndSectionFound = true;
-            }
-        }
-
-        PlayingControll(sectionName, baseGid1SectionFound, _baseGid2SectionFound, _baseGidEndSectionFound, playDemo);
     }
 
-    private void PlayingControll(string sectionName, bool _baseGid1SectionFound, bool _baseGid2SectionFound, bool _baseGidEndSectionFound, bool playDemo = false)
+    private void PlayingControll(string sectionName = "", bool playDemo = false)
     {
-        Debug.Log("Play control level");
-        if (_baseGid1SectionFound)
-        {
-            _currentCutscene = _baseGID1;
-            //_currentCutscene.PlaySection(sectionName, Cutscene.WrapMode.Once, () => { baseGid1SectionFound = false; Debug.Log("WOOOOOORKS"); ActivateButton(); });
-            isStop = false;
-            StartCoroutine(ChangeChapterDelay(sectionName));
-        }
+        Cutscene cutscene = chaptersDictionary[sectionName];
 
-        else if (_baseGid2SectionFound)
+        if (cutscene == baseGID2)
         {
-            if (_currentCutscene != _baseGID2)
+            if (currentCutscene != baseGID2)
             {
                 SkipFirstCutSceneForInit();
-                _currentCutscene = _baseGID2;
+                currentCutscene = baseGID2;
             }
-            isStop = false;
-            //_currentCutscene.PlaySection(sectionName, Cutscene.WrapMode.Once, () => { Debug.Log("WOOOOOORKS"); ActivateButton(); });
-            StartCoroutine(ChangeChapterDelay(sectionName));
         }
+        else
+            currentCutscene = baseGID1;
+
+        IsStop = false;
+        currentSectionName = sectionName;
 
         if (playDemo)
         {
             StartCoroutine(ChangeChapterDelay(sectionName, true));
+            return;
         }
 
-        currentSectionName = sectionName;
+        StartCoroutine(ChangeChapterDelay(sectionName));
     }
 
     public void ChangeCutsceneState()
     {
-        if (_currentCutscene != null)
+        if (currentCutscene != null)
         {
-            _currentCutscene.Stop();
+            currentCutscene.Stop();
         }
     }
 
     private void SkipFirstCutSceneForInit()
     {
-        _baseGID1.Play();
-        _baseGID1.Stop(Cutscene.StopMode.Skip);
+        baseGID1.Play();
+        baseGID1.Stop(Cutscene.StopMode.Skip);
     }
 
-    public void ActivateButton(string sectionName = "")
+    public void ActivateButton(string sectionName = "", bool fromSharing = false)
     {
-        _isPlaying = true;
+        IsPlaying = true;
 
         foreach (BtnTap item in StartScenario.chaptersBtn)
         {
             item.ActivateButton(sectionName);
         }
-        //foreach (TableElement item in test)
-        //{
-          
-        //    Collider tmp = item.GetComponent<Collider>();
-        //    if (tmp != null)
-        //    {
-        //        tmp.enabled = false;
-        //    }
-           
-        //}
-        //PlayerManager.Instance.ChangeStateToDemonstration();
+
+        if (!fromSharing)
+            SV_Sharing.Instance.SendBool(true, "activate_menu_items");
     }
 
-    public void DeactivateButton(string chapterName = "")
+    public void DeactivateButton(string chapterName = "", bool fromSharing = false)
     {
-        _isPlaying = false;
+        IsPlaying = false;
 
         foreach (BtnTap item in StartScenario.chaptersBtn)
         {
             item.DeactivateButton(chapterName);
         }
 
-        //foreach (TableElement item in test)
-        //{
-        //    Collider tmp = item.GetComponent<Collider>();
-        //    if (tmp != null)
-        //    {
-        //        tmp.enabled = true;
-        //    }
-        //}
 
-        //PlayerManager.Instance.ChangeStateToStandart();
+        if (!fromSharing)
+            SV_Sharing.Instance.SendBool(true, "deactivate_menu_items");
     }
 
     public void NextChapter()
     {
         nextChapterForPlay = "";
 
-        for (int i = 0; i < allSections.Length; i++)
-        {
-            if (allSections[i] == currentSectionName)
-            {
-                if (i == allSections.Length)
-                {
-                    return;
-                }
+        int indexCurrentSection = Array.IndexOf(allSections, currentSectionName);
 
-                nextChapterForPlay = allSections[i + 1];
-                break;
-            }
-        }
+        if (indexCurrentSection < allSections.Length)
+            nextChapterForPlay = allSections[indexCurrentSection + 1];
 
         StartCoroutine(ChapterDelay());
     }
@@ -343,19 +299,10 @@ public class CutsceneManager : Singleton<CutsceneManager>
     {
         nextChapterForPlay = "";
 
-        for (int i = 0; i < allSections.Length; i++)
-        {
-            if (allSections[i] == currentSectionName)
-            {
-                if (i == 0)
-                {
-                    nextChapterForPlay = allSections[0];
-                    return;
-                }
-                nextChapterForPlay = allSections[i - 1];
-                break;
-            }
-        }
+        int indexCurrentSection = Array.IndexOf(allSections, currentSectionName);
+
+        if (indexCurrentSection > 0)
+            nextChapterForPlay = allSections[indexCurrentSection - 1];
 
         StartCoroutine(ChapterDelay());
     }
@@ -365,7 +312,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         SkipCutscene();
         yield return new WaitForSeconds(1f);
 
-        if (nextChapterForPlay != "")
+        if (nextChapterForPlay != String.Empty)
         {
             PlaySectionNow(sectionName: nextChapterForPlay);
         }
@@ -382,7 +329,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
 
             bool canPlay = true;
             Debug.Log("All sections true");
-            _currentCutscene = _baseGID1;
+            currentCutscene = baseGID1;
 
             foreach (var item in allSections)
             {
@@ -391,7 +338,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
                     canPlay = false;
                     isSkipped = false;
 
-                    _currentCutscene.PlaySection(item, Cutscene.WrapMode.Once, () => Test3(ref canPlay, item));
+                    currentCutscene.PlaySection(item, Cutscene.WrapMode.Once, () => Test3(ref canPlay, item));
                     ActivateButton(item);
                 }
 
@@ -400,14 +347,11 @@ public class CutsceneManager : Singleton<CutsceneManager>
         }
         else
         {
-           
-            if (!isStop)
+            if (!IsStop)
             {
                 SkipCutscene(sectionName);
-                Debug.Log("OOOOOOOOPAAAAAAAAAAA");
                 yield return new WaitForSeconds(.2f);
-                Debug.Log("OOOOOOOOOOOOOOPAAAAAAAAAAAOOOOOOOOPAAAAAAAAAAAOOOOOOOOPAAAAAAAAAAAOOPAAAAAAAAAAA");
-                _currentCutscene.PlaySection(sectionName, Cutscene.WrapMode.Once, () => DeactivateButton());
+                currentCutscene.PlaySection(sectionName, Cutscene.WrapMode.Once, () => DeactivateButton());
                 ActivateButton(sectionName);
             }
         }
@@ -418,7 +362,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         if (!isSkipped)
         {
             canPlay = true;
-            _currentCutscene = _baseGID2;
+            currentCutscene = baseGID2;
             DeactivateButton(sectionName);
         }
     }

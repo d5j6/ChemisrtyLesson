@@ -22,7 +22,14 @@ public class TableElement : MonoBehaviour, IInteractive
     [SerializeField]
     private TextMeshPro _elementText;
 
-    private bool _isSelected;
+    private bool _isSelected = false;
+    public bool IsSelected
+    {
+        get
+        {
+            return _isSelected;
+        }
+    }
 
     void Awake()
     {        
@@ -31,35 +38,45 @@ public class TableElement : MonoBehaviour, IInteractive
         _elementText = GetComponentInChildren<TextMeshPro>();
   
         _isSelected = false;
-
-        Debug.Log("!Table element " + _atomName + " awaken");
     }
 
     public List<ActionType> GetAllowedActions() { return _allowedActions; }
 
     public void OnGazeEnter()
     {
-        Debug.Log("Gaze entered at " + _atomName);
-        if(_isSelected)
-        {
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart ||
+            _isSelected)
             return;
-        }
 
         _elementText.color = _highlightColor;
+
+        SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "highlight_element");
     }
 
     public void OnGazeLeave()
     {
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart ||
+            _isSelected)
+            return;
+
         Debug.Log("Gaze left at " + _atomName);
         CanselHighlighting();
+
+        SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "dehighlight_element");
     }
 
-    private void CanselHighlighting()
+    public void HighlightElement()
     {
-        if(_isSelected)
-        {
+        if (_isSelected)
             return;
-        }
+
+        _elementText.color = _highlightColor;
+    }
+
+    public void CanselHighlighting()
+    {
+        if (_isSelected)
+            return;
 
         _elementText.color = _selfColor;
     }
@@ -68,7 +85,10 @@ public class TableElement : MonoBehaviour, IInteractive
     {
         Debug.Log("!Tapped the element " + _atomName);
 
-        if(!_isSelected)
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart)
+            return;
+
+        if (!_isSelected)
         {
             Select();
         }
@@ -76,6 +96,8 @@ public class TableElement : MonoBehaviour, IInteractive
         {
             Deselect();
         }
+
+        SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "select_element");
     }
 
     public void StopDrag() { }
@@ -84,7 +106,7 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void Select()
     {
-        Debug.Log("!Selected");
+        
 
         _isSelected = true;
         _elementText.color = _selectColor;
@@ -102,7 +124,7 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void CanselSelect()
     {
-        Debug.Log("!Cancelling select");
+        
         Deselect();
         CanselHighlighting();
     }

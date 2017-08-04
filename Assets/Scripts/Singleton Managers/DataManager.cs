@@ -6,6 +6,8 @@ using Newtonsoft.Json.Linq;
 public class DataManager : Singleton<DataManager>
 {
     private Dictionary<string, AtomInformation> _atomInformations = new Dictionary<string, AtomInformation>();
+    private Dictionary<int, GameObject> interactiveObjects = new Dictionary<int, GameObject>();
+    private Dictionary<int, GameObject> menuChapters = new Dictionary<int, GameObject>();
 
     private bool _isInitialized;
 
@@ -29,6 +31,32 @@ public class DataManager : Singleton<DataManager>
 
                 _atomInformations.Add(atomInfo.name, atomInfo);
             }
+        }
+
+        //InitializeDictionaries();
+    }
+    
+    public void InitializeDictionaries()
+    {
+        var elements = GameObject.FindObjectsOfType<IDHolder>();
+        
+        foreach (var idHolder in elements)
+        {
+                interactiveObjects.Add(idHolder.ID, idHolder.gameObject);
+        }
+        
+    }
+
+    public GameObject GetInteractiveObject(int ID)
+    {
+        try
+        {
+            return interactiveObjects[ID].gameObject;
+        }
+        catch(KeyNotFoundException ex)
+        {
+            Debug.Log("!" + ex.Message);
+            return null;
         }
     }
 

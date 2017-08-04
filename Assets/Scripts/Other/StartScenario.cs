@@ -27,6 +27,16 @@ public class StartScenario : MonoBehaviour
         OwnGestureManager.Instance.onTapEvent += PeriodicTableDropHandler;
     }
 
+    public void DestroyPeriodicTableTemplate()
+    {
+        OwnGestureManager.Instance.onTapEvent -= PeriodicTableDropHandler;
+        Destroy(PeriodicTabletemplate);
+        Vector3 chaptersSpawnPos = new Vector3(-1f, 0, 0.1f);
+        chaptersSpawnPos = periodicTable.transform.TransformPoint(chaptersSpawnPos);
+        Instantiate(chaptersMenu, chaptersSpawnPos, periodicTable.transform.rotation);
+        chaptersBtn = GameObject.FindObjectsOfType<BtnTap>();
+    }
+
     private void PeriodicTableDropHandler(IInteractive interactive)
     {
         OwnGestureManager.Instance.onTapEvent -= PeriodicTableDropHandler;
@@ -36,6 +46,12 @@ public class StartScenario : MonoBehaviour
         periodicTable.transform.rotation = PeriodicTabletemplate.transform.rotation;
 
         Destroy(PeriodicTabletemplate);
+
+        SV_Sharing.Instance.SendTransform(
+            periodicTable.transform.position,
+            periodicTable.transform.rotation,
+            periodicTable.transform.localScale,
+            "periodic_table");
 
         projectorTemplate = Instantiate(projectorTemplatePrefab);
         TemplateDrag spawnerTemplateScript = projectorTemplate.GetComponent<TemplateDrag>();
@@ -57,5 +73,13 @@ public class StartScenario : MonoBehaviour
         projector.transform.rotation = projectorTemplate.transform.rotation;
 
         Destroy(projectorTemplate);
+
+        SV_Sharing.Instance.SendTransform(
+            projector.transform.position,
+            projector.transform.rotation,
+            projector.transform.localScale,
+            "projector");
+
+        DataManager.Instance.InitializeDictionaries();
     }
 }

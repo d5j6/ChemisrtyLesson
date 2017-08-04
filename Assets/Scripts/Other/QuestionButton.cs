@@ -168,10 +168,10 @@ public class QuestionButton : MonoBehaviour, IInteractive
             liveTime = 0f;
 
             //FadeOut();
-            if (CutsceneManager.Instance.baseGid1SectionFound)
-            {
-                CutsceneManager.Instance.PlayBaseGIDCutscene2("Groups and periods");
-            }
+            //if (CutsceneManager.Instance.BaseGid1SectionFound)
+            //{
+            //    CutsceneManager.Instance.PlayBaseGIDCutscene2("Groups and periods");
+            //}
         }
     }
 

@@ -47,7 +47,7 @@ public class AtomUIStateButton : MonoBehaviour, IInteractive
 
     public void OnGazeEnter()
     {
-        Debug.Log("!AtomUIStateButton gaze entered");
+        
 
         if(_isSelected)
         {

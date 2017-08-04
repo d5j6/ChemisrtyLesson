@@ -107,7 +107,7 @@ public class GestureDetector : Singleton<GestureDetector> {
 
     private void ManipulationRecognizer_ManipulationStartedEvent(InteractionSourceKind source, Vector3 position, Ray ray)
     {
-        Debug.Log("!Try: Manipulation started");
+        
 
         //OwnGazeManager.Instance.UpdateFocusedGameObject();
 

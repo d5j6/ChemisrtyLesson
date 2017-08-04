@@ -47,7 +47,7 @@ public class ProjectorController : MonoBehaviour, IInteractive
 
     public void OnGazeEnter()
     {
-        Debug.Log("!Project Controller gaze entered");
+        
         _brightnessTween.Kill();
         _brightnessTween = DOTween.To(() => { return _material.GetFloat("_Brightness"); }, (b) => { _material.SetFloat("_Brightness", b); }, 2f, _duration).Play();
     }

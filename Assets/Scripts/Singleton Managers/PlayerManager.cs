@@ -39,13 +39,13 @@ public class PlayerManager : Singleton<PlayerManager>
             List<ActionType> allowedActionTypes = interactive.GetAllowedActions();
 
             //TODO: заменить работу исключительно с одним типом на работу со множеством в дальнейшем
-            //ActionType allowedActionType = allowedActionTypes[0];
+            ActionType allowedActionType = allowedActionTypes[0];
 
-            foreach(ActionType allowedActionType in allowedActionTypes)
+            //foreach(ActionType allowedActionType in allowedActionTypes)
                 switch (allowedActionType)
                 {
                     case ActionType.TapOnly:
-                        Debug.Log("!!!Player Standart Tap works");
+                        
                         new TapCommand(interactive).Execute();
                         break;
                     case ActionType.DragAndDrop:
@@ -136,26 +136,16 @@ public class PlayerManager : Singleton<PlayerManager>
         public void OnGazeEnterHandler(IInteractive interactive)
         {
             interactive.OnGazeEnter();
-            //SkipGidButton test = GameObject.FindObjectOfType<SkipGidButton>();
-            //if (test != null)
-            //{
-            //    test.OnGazeEnter();
-            //}
         }
 
         public void OnGazeLeaveHandler(IInteractive interactive)
         {
               interactive.OnGazeLeave();
-            //SkipGidButton test = GameObject.FindObjectOfType<SkipGidButton>();
-            //if (test != null)
-            //{
-            //    test.OnGazeLeave();
-            //}
         }
 
         public void OnGestureTapHandler(IInteractive interactive)
         {
-            Debug.Log("!!!Player Demonstration Tap works");
+            
             new TapCommand(interactive).Execute();
         }
 
@@ -238,10 +228,22 @@ public class PlayerManager : Singleton<PlayerManager>
     private InputStrategyFacade _inputFacade;
 
     private string _stateName;
+
+    private PeriodicTable periodicTable;
+
+    private ProjectorController projector;
+
+    private SkipGidButton skipGidButton;
     #endregion
 
     #region Properties
     public InputStrategyFacade.Strategies Strategy { get { return _inputFacade.Strategy; } }
+
+    public PeriodicTable PeriodicTable { get { return periodicTable; } }
+
+    public ProjectorController Projector { get { return projector; } }
+
+    public SkipGidButton SkipGidButton { get { return skipGidButton; } }
     #endregion
 
     #region Initialize and Start methods
@@ -259,10 +261,12 @@ public class PlayerManager : Singleton<PlayerManager>
 
         _inputFacade.SetListeners(OnGazeEnterHandler, OnGazeLeaveHandler, OnGestureTapHandler);
         _inputFacade.SetListeneresForNavigation(OnNavigationStart, OnNavigationUpdate);
-        //_inputFacade.ChangeStrategyToResize();
-        //_inputFacade.ChangeStrategyToDemonstration();
         _inputFacade.ChangeStrategyToStandart();
         _isInitialized = true;
+
+        periodicTable = GameObject.FindObjectOfType<PeriodicTable>();
+        projector = GameObject.FindObjectOfType<ProjectorController>();
+        skipGidButton = GameObject.FindObjectOfType<SkipGidButton>();
     }
     #endregion
 
@@ -310,11 +314,18 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void ChangeStateToDemonstration()
     {
+        CutsceneManager.Instance.ActivateButton();
         _state.ChangeStateToDemonstration();
     }
 
     public void ChangeStateToStandart()
     {
+        if (!CutsceneManager.Instance.IsStop)
+        {
+            CutsceneManager.Instance.StopCutscene();
+            CutsceneManager.Instance.DeactivateButton();
+        }
+
         _state.ChangeStateToStandart();
     }
 }

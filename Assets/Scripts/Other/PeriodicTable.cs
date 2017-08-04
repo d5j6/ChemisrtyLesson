@@ -46,16 +46,12 @@ public class PeriodicTable : MonoBehaviour
 
     public void SelectElement(TableElement element)
     {
-        Debug.Log("!Selecting element " + element.atomName + " via PeriodicTable");
-
         if (_selectedElement != null)
         {
-            Debug.Log("!Selected element was " + _selectedElement.atomName);
             _selectedElement.CanselSelect();
         }
 
         _selectedElement = element;
-        Debug.Log("!Selected element now is " + _selectedElement.atomName);
 
         _projector.CreateAtomProjection(_selectedElement);
     }
@@ -90,7 +86,6 @@ public class PeriodicTable : MonoBehaviour
                     TableGroup tableGroup = child.GetComponent<TableGroup>();
                     if(tableElement != null)
                     {
-                        Debug.Log("!Table element " + tableElement.atomName);
                         AtomInformation atomInfo = DataManager.Instance.GetAtominfo(tableElement.atomName);
                         groups[atomInfo.type].Add(tableElement);
                     }

@@ -14,18 +14,18 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     private class GestureNoneStrategy : IGestureStrategy
     {
-        public void Alghoritm() { Debug.Log("!GestureNoneStrategy"); }
+        public void Alghoritm() {  }
     }
 
     private class GestureStandartStrategy : IGestureStrategy
     {
         public void Alghoritm()
         {
-            Debug.Log("!GestureStandartStrategy");
+            
 
             if(Instance.onTapEvent != null)
             {
-                Debug.Log("!GestureStandartStrategy + TapEvent");
+                
                 Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocused);
             }
 
@@ -95,17 +95,15 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
         {
             if(Instance.onTapEvent != null)
             {                
-                if (OwnGazeManager.Instance.currentFocused != null &&
-                    OwnGazeManager.Instance.currentFocused is SkipGidButton)
+                if (OwnGazeManager.Instance.currentFocusedReset != null)
                 {
-                    Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with SkipGidButton");
-                    Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocused);
+                    
+                    Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedReset);
                     return;
                 }
 
-                Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with Chapter Menu");
+                Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with " + OwnGazeManager.Instance.currentFocusedChapter.name);
                 Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedChapter);
-                Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedReset);
             }
         }
     }
@@ -150,7 +148,7 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
         _tapGestureRecognizer.StartCapturingGestures();
 
-        Debug.Log("!Change GestureStratedy To Standart");
+        
     }
 
     public void ChangeStrategyToResize()
@@ -163,7 +161,7 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
         _tapGestureRecognizer.StartCapturingGestures();
 
-        Debug.Log("!Change GestureStratedy To Resize");
+        
     }
 
     public void ChangeStrategyToDragAndDrop()
@@ -176,7 +174,7 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
         _tapGestureRecognizer.StartCapturingGestures();
 
-        Debug.Log("!Change GestureStratedy To Drag'n'Drop");
+        
     }
 
     public void ChangeStrategyToDemonstration()
@@ -189,7 +187,7 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
         _tapGestureRecognizer.StartCapturingGestures();
 
-        Debug.Log("!Change GestureStratedy To Demonstration");
+        
     }
 
     public void Initialize()
@@ -217,7 +215,7 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
 
     void OnTap(InteractionSourceKind source, int tapCount, Ray headRay)
     {
-        Debug.Log("!Works OnTap with " + _strategyName + " strategy");
+        
         
         _strategy.Alghoritm();
     }

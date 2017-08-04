@@ -25,7 +25,7 @@ public class InputStrategyFacade
 
     public void ChangeStrategyToStandart()
     {
-        Debug.Log("!Facade strategy changed to Standart Strategy");
+        
         Strategy = Strategies.Standart;
         OwnGazeManager.Instance.ChangeStrategyToStandart();
         OwnGestureManager.Instance.ChangeStrategyToStandart();
@@ -33,7 +33,7 @@ public class InputStrategyFacade
 
     public void ChangeStrategyToDragAndDrop()
     {
-        Debug.Log("!Facade strategy changed to Drag'n'drop Strategy");
+        
         Strategy = Strategies.DragAndDrop;
         OwnGazeManager.Instance.ChangeStrategyToDragAndDrop();
         OwnGestureManager.Instance.ChangeStrategyToDragAndDrop();
@@ -41,7 +41,7 @@ public class InputStrategyFacade
 
     public void ChangeStrategyToDemonstration()
     {
-        Debug.Log("!Facade strategy changed to Demonstration Strategy");
+        
         Strategy = Strategies.Demonstration;
         OwnGazeManager.Instance.ChangeStrategyDemonstration();
         OwnGestureManager.Instance.ChangeStrategyToDemonstration();
@@ -49,7 +49,7 @@ public class InputStrategyFacade
 
     public void ChangeStrategyToResize()
     {
-        Debug.Log("!Facade strategy changed to Resize Strategy");
+        
         Strategy = Strategies.Resize;
         OwnGazeManager.Instance.ChangeStrategyToStandart();
         OwnGestureManager.Instance.ChangeStrategyToResize();
