@@ -1,4 +1,0 @@
-F:\HoloGroupPractice\Periodoc Table Current 560 Final\App\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj;x86
-F:\HoloGroupPractice\Periodoc Table Current 560 Final\App\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
-F:\HoloGroupPractice\Periodoc Table Current 560 Final\App\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
-F:\HoloGroupPractice\Periodoc Table Current 560 Final\App\PeriodicTable\PeriodicTable.csproj;x86
