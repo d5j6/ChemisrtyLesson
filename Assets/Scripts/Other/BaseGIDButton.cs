@@ -56,7 +56,7 @@ public class BaseGIDButton : MonoBehaviour, IInteractive
         //periodicTable.DeselectElement(null);
 
             //CutsceneManager.Instance.PlayBaseGIDCutscene1();
-            //PlayerManager.Instance.ChangeStateToDemonstration();
+            //PlayerManager.Instance.ChangeStateToDefault();
 			cutsceneManager.PlaySectionNow(playDemo: true);
     }
 

@@ -24,12 +24,12 @@ public class StartScenario : MonoBehaviour
         TemplateDrag templateTableScript = PeriodicTabletemplate.GetComponentInChildren<TemplateDrag>();
     
         PlayerManager.Instance.TryToDragInteractive(templateTableScript);
-        OwnGestureManager.Instance.onTapEvent += PeriodicTableDropHandler;
+        OwnGestureManager.Instance.OnTapEvent += PeriodicTableDropHandler;
     }
 
     public void DestroyPeriodicTableTemplate()
     {
-        OwnGestureManager.Instance.onTapEvent -= PeriodicTableDropHandler;
+        OwnGestureManager.Instance.OnTapEvent -= PeriodicTableDropHandler;
         Destroy(PeriodicTabletemplate);
         Vector3 chaptersSpawnPos = new Vector3(-1f, 0, 0.1f);
         chaptersSpawnPos = periodicTable.transform.TransformPoint(chaptersSpawnPos);
@@ -39,7 +39,7 @@ public class StartScenario : MonoBehaviour
 
     private void PeriodicTableDropHandler(IInteractive interactive)
     {
-        OwnGestureManager.Instance.onTapEvent -= PeriodicTableDropHandler;
+        OwnGestureManager.Instance.OnTapEvent -= PeriodicTableDropHandler;
 
         periodicTable.transform.parent = null;
         periodicTable.transform.position = PeriodicTabletemplate.transform.position;
@@ -57,12 +57,12 @@ public class StartScenario : MonoBehaviour
         TemplateDrag spawnerTemplateScript = projectorTemplate.GetComponent<TemplateDrag>();
         PlayerManager.Instance.TryToDragInteractive(spawnerTemplateScript);
 
-        OwnGestureManager.Instance.onTapEvent += SpawnerTemplateDropHandler;
+        OwnGestureManager.Instance.OnTapEvent += SpawnerTemplateDropHandler;
     }
 
     private void SpawnerTemplateDropHandler(IInteractive interactive)
     {
-        OwnGestureManager.Instance.onTapEvent -= SpawnerTemplateDropHandler;
+        OwnGestureManager.Instance.OnTapEvent -= SpawnerTemplateDropHandler;
         Vector3 chaptersSpawnPos = new Vector3(-1f, 0, 0.1f);
         chaptersSpawnPos = periodicTable.transform.TransformPoint(chaptersSpawnPos);
         Instantiate(chaptersMenu, chaptersSpawnPos, periodicTable.transform.rotation);

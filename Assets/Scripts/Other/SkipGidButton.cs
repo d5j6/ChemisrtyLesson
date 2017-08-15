@@ -134,58 +134,62 @@ public class SkipGidButton : MonoBehaviour, IInteractive
         SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_dehighlight");
     }
 
-    public void ChangeStrategyToStandart()
+    public void ChangeStrategyToDefault()
     {
-        //if (gameObject.tag == "Free Mode")
-        //{
-        //    
-        //    CutsceneManager.Instance.StopCutscene();
-        //}
-        //else
-        //{
-        //    if (playNextSection)
-        //    {
-        //        CutsceneManager.Instance.NextChapter();
-        //    }
-        //    else
-        //    {
-        //        
-        //        CutsceneManager.Instance.SkipCutscene();
-        //    }
-        //}
-        HighlightFreeModeText();
-        isFreeMode = true;
-        PlayerManager.Instance.ChangeStateToStandart();
+        PlayerManager.Instance.ChangeStateToDefault();
     }
 
-    public void ChangeStrategyToDemonstration()
-    {
-        DeHighlightFreeModeText();
-        isFreeMode = false;
+    //public void ChangeStrategyToStandart()
+    //{
+    //    //if (gameObject.tag == "Free Mode")
+    //    //{
+    //    //    
+    //    //    CutsceneManager.Instance.StopCutscene();
+    //    //}
+    //    //else
+    //    //{
+    //    //    if (playNextSection)
+    //    //    {
+    //    //        CutsceneManager.Instance.NextChapter();
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        
+    //    //        CutsceneManager.Instance.SkipCutscene();
+    //    //    }
+    //    //}
+    //    HighlightFreeModeText();
+    //    isFreeMode = true;
+    //    PlayerManager.Instance.ChangeStateToDefault();
+    //}
+    //public void ChangeStrategyToDemonstration()
+    //{
+    //    DeHighlightFreeModeText();
+    //    isFreeMode = false;
 
-        //Destroying current projection of an atom before changing to demonstration mode
-        PeriodicTable periodicTable = GameObject.FindObjectOfType<PeriodicTable>();
-        if (periodicTable.SelectedElement != null)
-            periodicTable.SelectedElement.CanselSelect();
+    //    //Destroying current projection of an atom before changing to demonstration mode
+    //    PeriodicTable periodicTable = GameObject.FindObjectOfType<PeriodicTable>();
+    //    if (periodicTable.SelectedElement != null)
+    //        periodicTable.SelectedElement.CanselSelect();
 
-        PlayerManager.Instance.ChangeStateToDemonstration();
-    }
+    //    PlayerManager.Instance.ChangeStateToDefault();
+    //}
 
     public void OnGestureTap()
     {
         
-        if(PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Standart)
-        {
-            ChangeStrategyToDemonstration();
-            SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_change_to_demonstration");
-            return;
-        }
+        //if(PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default)
+        //{
+        //    ChangeStrategyToDemonstration();
+        //    SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_change_to_demonstration");
+        //    return;
+        //}
 
-        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration)
-        {
-            ChangeStrategyToStandart();
-            SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_change_to_standart");
-        }
+        //if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default)
+        //{
+        //    ChangeStrategyToStandart();
+        //    SV_Sharing.Instance.SendInt(GetComponent<IDHolder>().ID, "SGB_change_to_standart");
+        //}
 
         //GetComponentInParent<PeriodicTable>().SelectElement(GetComponentInChildren<TableElement>());
     }

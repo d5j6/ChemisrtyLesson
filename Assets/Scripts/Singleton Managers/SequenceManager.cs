@@ -52,7 +52,7 @@ public class SequenceManager : Singleton<SequenceManager>
 
         seq.Play();
 
-        PlayerManager.Instance.ChangeStateToDemonstration();
+        PlayerManager.Instance.ChangeStateToDefault();
     }
 
     void Awake()

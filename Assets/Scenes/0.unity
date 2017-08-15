@@ -6634,7 +6634,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 785335438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 28853719}
@@ -11345,6 +11345,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1977165603259468, guid: e7a980bef2485fb42929265849129ee6,
         type: 2}
+    - target: {fileID: 1000010438459362, guid: 5e9cc1095d8feea46922d5cc552a1219, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65000012811219944, guid: 5e9cc1095d8feea46922d5cc552a1219, type: 2}
     - {fileID: 65000013721288694, guid: 5e9cc1095d8feea46922d5cc552a1219, type: 2}
@@ -18859,9 +18863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edf15181dd83474782fa56b7aad64f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RaycastLayerMasks:
-  - serializedVersion: 2
-    m_Bits: 4294967291
 --- !u!4 &1629679526
 Transform:
   m_ObjectHideFlags: 0

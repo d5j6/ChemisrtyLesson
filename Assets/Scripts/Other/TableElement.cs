@@ -44,7 +44,7 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void OnGazeEnter()
     {
-        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart ||
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Default ||
             _isSelected)
             return;
 
@@ -55,7 +55,7 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void OnGazeLeave()
     {
-        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart ||
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Default ||
             _isSelected)
             return;
 
@@ -85,7 +85,7 @@ public class TableElement : MonoBehaviour, IInteractive
     {
         Debug.Log("!Tapped the element " + _atomName);
 
-        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart)
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Default)
             return;
 
         if (!_isSelected)

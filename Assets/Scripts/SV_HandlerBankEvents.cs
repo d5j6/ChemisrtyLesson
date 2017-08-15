@@ -128,13 +128,13 @@ public class SV_HandlerBankEvents : SpectatorView.SV_Singleton<SV_HandlerBankEve
                 chapter.GetComponent<BtnTap>().RunAnumation(true);
                 break;
 
-            case "SGB_change_to_demonstration":
-                skipGidButton.ChangeStrategyToDemonstration();
-                break;
+            //case "SGB_change_to_demonstration":
+            //    skipGidButton.ChangeStrategyToDemonstration();
+            //    break;
 
-            case "SGB_change_to_standart":
-                skipGidButton.ChangeStrategyToStandart();
-                break;
+            //case "SGB_change_to_standart":
+            //    skipGidButton.ChangeStrategyToStandart();
+            //    break;
 
             case "SGB_highlight":
                 skipGidButton.HighLightOnGazeEnter();

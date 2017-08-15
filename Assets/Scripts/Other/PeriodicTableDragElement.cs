@@ -76,8 +76,8 @@ public class PeriodicTableDragElement : MonoBehaviour, IInteractive
     {
         StopCoroutine(_dragCoroutine);
 
-        _periodicTable.transform.position = OwnGazeManager.Instance.hitPoint;
-        _periodicTable.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.pointNormal);
+        _periodicTable.transform.position = OwnGazeManager.Instance.HitPoint;
+        _periodicTable.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.PointNormal);
         
         ChangeLayerRecursively(_periodicTable, _oldLayer);
     }

@@ -47,7 +47,7 @@ public class BtnTap : MonoBehaviour, IInteractive
 
     public void OnGestureTap()
     {
-        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration)
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default)
         {
 
             RunAnumation();
@@ -77,7 +77,7 @@ public class BtnTap : MonoBehaviour, IInteractive
 
     public void OnGazeEnter()
     {
-        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration &&
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default &&
             !isActiveBtn)
             HighlightMenuItem();
     }
@@ -85,7 +85,7 @@ public class BtnTap : MonoBehaviour, IInteractive
 
     public void OnGazeLeave()
     {
-        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration &&
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default &&
             !isActiveBtn)
             DehighlightMenuItem();
     }

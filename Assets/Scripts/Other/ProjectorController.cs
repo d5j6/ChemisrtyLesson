@@ -64,8 +64,8 @@ public class ProjectorController : MonoBehaviour, IInteractive
     {
         StopCoroutine(_dragCoroutine);
 
-        gameObject.transform.position = OwnGazeManager.Instance.hitPoint;
-        gameObject.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.pointNormal);
+        gameObject.transform.position = OwnGazeManager.Instance.HitPoint;
+        gameObject.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.PointNormal);
 
         ChangeLayerRecursively(gameObject, _oldLayer);
     }
