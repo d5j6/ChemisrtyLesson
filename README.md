@@ -1,2 +1,2 @@
 # ChemisrtyLesson
-Current version of chemistry lesson application
+Current version (1.0.1) of chemistry lesson application
