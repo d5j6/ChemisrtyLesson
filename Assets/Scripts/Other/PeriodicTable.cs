@@ -34,6 +34,8 @@ public class PeriodicTable : MonoBehaviour
     [SerializeField]
     private ProjectorController _projector;
 
+    public GameObject projectorPrefab;
+
     public MeshRenderer shape;
 
     public MeshRenderer periodShape;
@@ -56,6 +58,11 @@ public class PeriodicTable : MonoBehaviour
         _projector.CreateAtomProjection(_selectedElement);
     }
 
+    public void ShowCommand()
+    {
+        projectorPrefab.SetActive(true);
+    }
+
     public void DeselectElement(TableElement element)
     {
         if(_selectedElement != null)
@@ -65,6 +72,11 @@ public class PeriodicTable : MonoBehaviour
 
         _selectedElement = null;
         _projector.DestroyAtomProjection();
+    }
+
+    public void HideCommand()
+    {
+        projectorPrefab.SetActive(false);
     }
 
     void Awake()

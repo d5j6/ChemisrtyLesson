@@ -6,6 +6,8 @@ using TMPro;
 
 public class TableElement : MonoBehaviour, IInteractive
 {
+    private AudioSource audioSource;
+
     private PeriodicTable _periodicTable;
 
     [SerializeField]
@@ -38,6 +40,12 @@ public class TableElement : MonoBehaviour, IInteractive
         _elementText = GetComponentInChildren<TextMeshPro>();
   
         _isSelected = false;
+    }
+
+    void Start()
+    {
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+        audioSource = AudioManager.Instance.AudioSourceSettings(audioSource);
     }
 
     public List<ActionType> GetAllowedActions() { return _allowedActions; }
@@ -88,6 +96,8 @@ public class TableElement : MonoBehaviour, IInteractive
         if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Default)
             return;
 
+        audioSource.Play();
+
         if (!_isSelected)
         {
             Select();
@@ -106,8 +116,6 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void Select()
     {
-        
-
         _isSelected = true;
         _elementText.color = _selectColor;
 

@@ -84,7 +84,7 @@ public class AtomUIStateController : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(Camera.main.transform.position);
+       transform.LookAt(Camera.main.transform.position);
     }
 
     public void ChangeLocalViewTo3D(bool to3D)

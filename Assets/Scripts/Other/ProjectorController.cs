@@ -7,6 +7,7 @@ using DG.Tweening;
 // AbstractFactory used for atom creation
 public class ProjectorController : MonoBehaviour, IInteractive
 {
+
     [SerializeField]
     private List<ActionType> allowedActions;
 
@@ -64,8 +65,8 @@ public class ProjectorController : MonoBehaviour, IInteractive
     {
         StopCoroutine(_dragCoroutine);
 
-        gameObject.transform.position = OwnGazeManager.Instance.HitPoint;
-        gameObject.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.PointNormal);
+        this.gameObject.transform.position = OwnGazeManager.Instance.HitPoint;
+        this.gameObject.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.PointNormal);
 
         ChangeLayerRecursively(gameObject, _oldLayer);
     }
@@ -85,8 +86,8 @@ public class ProjectorController : MonoBehaviour, IInteractive
     {
         while(true)
         {
-            transform.position = Vector3.Lerp(gameObject.transform.position, OwnCursorManager.Instance.cursor.position, Time.deltaTime * 8f);
-            transform.rotation = Quaternion.Slerp(transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f) ;
+            this.gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, OwnCursorManager.Instance.cursor.position, Time.deltaTime * 8f);
+            this.gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f) ;
 
             yield return null;
         }

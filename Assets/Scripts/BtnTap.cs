@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class BtnTap : MonoBehaviour, IInteractive
 {
+    private AudioSource audioSource;
+
     [SerializeField]
     private string chapterName;
 
@@ -32,13 +34,13 @@ public class BtnTap : MonoBehaviour, IInteractive
     {
         _text = GetComponentInChildren<Text>();
         _text.color = Color.white;
+
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+        audioSource = AudioManager.Instance.AudioSourceSettings(audioSource);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Update() { }
 
     public List<ActionType> GetAllowedActions()
     {
@@ -49,7 +51,7 @@ public class BtnTap : MonoBehaviour, IInteractive
     {
         if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default)
         {
-
+            audioSource.Play();
             RunAnumation();
         }
     }
