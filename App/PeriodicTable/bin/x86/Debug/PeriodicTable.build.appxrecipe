@@ -10,22 +10,22 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>a7266fb7-1c6a-4927-b855-d5abd53c9a56</PackageIdentityName>
     <PackageIdentityPublisher>CN=DefaultCompany</PackageIdentityPublisher>
-    <IntermediateOutputPath>F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType></RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\bin\x86\Debug\AppX</LayoutDir>
+    <LayoutDir>F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\bin\x86\Debug\AppX</LayoutDir>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\bin\x86\Debug\PeriodicTable.exe">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\bin\x86\Debug\PeriodicTable.exe">
       <PackagePath>entrypoint\PeriodicTable.exe</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\andre\.nuget\packages\Microsoft.ApplicationInsights\1.0.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.dll">
@@ -349,7 +349,7 @@
     <AppxPackagedFile Include="C:\Program Files\Unity 5.6\Editor\Data\PlaybackEngines\MetroSupport\Players\UAP\dotnet\x86\Debug\UnityEngineProxy.dll">
       <PackagePath>UnityEngineProxy.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Unprocessed\WinRTLegacy.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Unprocessed\WinRTLegacy.dll">
       <PackagePath>WinRTLegacy.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\Unity 5.6\Editor\Data\PlaybackEngines\MetroSupport\Players\UAP\dotnet\x86\Debug\UnityPlayer.dll">
@@ -373,88 +373,88 @@
     <AppxPackagedFile Include="C:\Program Files\Unity 5.6\Editor\Data\PlaybackEngines\MetroSupport\Players\UAP\dotnet\x86\Debug\WinRTBridge.winmd">
       <PackagePath>WinRTBridge.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Resource.res">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Resource.res">
       <PackagePath>Resource.res</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\MicStreamSelector.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\MicStreamSelector.dll">
       <PackagePath>MicStreamSelector.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\SharingClient.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\SharingClient.dll">
       <PackagePath>SharingClient.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\SpatialUnderstanding.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\SpatialUnderstanding.dll">
       <PackagePath>SpatialUnderstanding.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\PlaneFinding.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\PlaneFinding.dll">
       <PackagePath>PlaneFinding.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\AudioPluginMsHRTF.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\AudioPluginMsHRTF.dll">
       <PackagePath>AudioPluginMsHRTF.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\globalgamemanagers">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\globalgamemanagers">
       <PackagePath>Data\globalgamemanagers</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\level0">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\level0">
       <PackagePath>Data\level0</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\Resources\unity default resources">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\Resources\unity default resources">
       <PackagePath>Data\Resources\unity default resources</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\Resources\unity_builtin_extra">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\Resources\unity_builtin_extra">
       <PackagePath>Data\Resources\unity_builtin_extra</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\globalgamemanagers.assets">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\globalgamemanagers.assets">
       <PackagePath>Data\globalgamemanagers.assets</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\resources.assets">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\resources.assets">
       <PackagePath>Data\resources.assets</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\sharedassets0.assets">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\sharedassets0.assets">
       <PackagePath>Data\sharedassets0.assets</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\managedAssemblies.txt">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\managedAssemblies.txt">
       <PackagePath>Data\managedAssemblies.txt</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\nativePlugins.txt">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\nativePlugins.txt">
       <PackagePath>Data\nativePlugins.txt</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\resources.assets.resS">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\resources.assets.resS">
       <PackagePath>Data\resources.assets.resS</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\sharedassets0.assets.resS">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\sharedassets0.assets.resS">
       <PackagePath>Data\sharedassets0.assets.resS</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\resources.resource">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\resources.resource">
       <PackagePath>Data\resources.resource</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Data\sharedassets0.resource">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Data\sharedassets0.resource">
       <PackagePath>Data\sharedassets0.resource</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.15063.0\\redist\Debug\x86\ucrtbased.dll">
@@ -463,53 +463,53 @@
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.15063.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\UnityEngine.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\UnityEngine.dll">
       <PackagePath>UnityEngine.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Newtonsoft.Json.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\DOTween50.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\DOTween50.dll">
       <PackagePath>DOTween50.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\nunit.framework.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\nunit.framework.dll">
       <PackagePath>nunit.framework.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\UnityEngine.UI.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\UnityEngine.UI.dll">
       <PackagePath>UnityEngine.UI.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\DOTween43.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\DOTween43.dll">
       <PackagePath>DOTween43.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\UnityEngine.HoloLens.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\UnityEngine.HoloLens.dll">
       <PackagePath>UnityEngine.HoloLens.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\UnityEngine.Networking.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\UnityEngine.Networking.dll">
       <PackagePath>UnityEngine.Networking.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\DOTween.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\DOTween.dll">
       <PackagePath>DOTween.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\DOTween46.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\DOTween46.dll">
       <PackagePath>DOTween46.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\UnityEngine.VR.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\UnityEngine.VR.dll">
       <PackagePath>UnityEngine.VR.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Vectrosity.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Vectrosity.dll">
       <PackagePath>Vectrosity.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Assembly-CSharp.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Assembly-CSharp.dll">
       <PackagePath>Assembly-CSharp.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\Assembly-CSharp-firstpass.dll">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\Assembly-CSharp-firstpass.dll">
       <PackagePath>Assembly-CSharp-firstpass.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\bin\x86\Debug\Core\PeriodicTable.exe">
+    <AppxPackagedFile Include="F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\bin\x86\Debug\Core\PeriodicTable.exe">
       <PackagePath>PeriodicTable.exe</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

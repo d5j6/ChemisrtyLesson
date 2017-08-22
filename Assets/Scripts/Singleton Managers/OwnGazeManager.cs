@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HoloToolkit.Unity.InputModule;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class OwnGazeManager : Singleton<OwnGazeManager>
     private class GazeDefaultStrategy : IGazeStrategy
     {
         private OwnGazeManager _ownGaze;
-
         private int _spartialMeshLayer = LayerMask.NameToLayer("SpartialMesh");
         private int _demonstrationLayer = LayerMask.NameToLayer("Demonstration");
 

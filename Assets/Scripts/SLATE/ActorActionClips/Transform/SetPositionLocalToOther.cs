@@ -6,6 +6,7 @@ using Slate.ActionClips;
 [Category("Gemeleon/Transform")]
 public class SetPositionLocalToOther : ActorActionClip
 {
+    // PerodicTable's transform variable
     public Transform other;
     public Vector3 localPosition;
 
@@ -23,6 +24,7 @@ public class SetPositionLocalToOther : ActorActionClip
 
     protected override void OnEnter()
     {
+        // Changed "" to "-".
         actor.transform.position = other.transform.TransformPoint(localPosition);
     }
 }

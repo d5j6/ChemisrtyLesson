@@ -78,8 +78,7 @@ public class AtomUIStateController : MonoBehaviour
     void Awake()
     {
         _projector = GetComponentInParent<ProjectorController>();
-
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
     }
 
     void Update()

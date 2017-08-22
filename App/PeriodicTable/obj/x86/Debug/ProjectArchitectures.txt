@@ -1,4 +1,4 @@
-F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj;x86
-F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
-F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
-F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\PeriodicTable\PeriodicTable.csproj;x86
+F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj;x86
+F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
+F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
+F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_2.0-master\App\PeriodicTable\PeriodicTable.csproj;x86
