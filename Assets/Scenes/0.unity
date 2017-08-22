@@ -3384,7 +3384,7 @@ MonoBehaviour:
   _animationData:
     _animatedParameters: []
   other: {fileID: 1332115159}
-  localPosition: {x: 0.3, y: -0.2, z: 0.3}
+  localPosition: {x: 1.6, y: 0, z: 0.4}
 --- !u!114 &294572807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3420,7 +3420,7 @@ MonoBehaviour:
   _animationData:
     _animatedParameters: []
   other: {fileID: 1332115159}
-  localPosition: {x: -1.6, y: -0.2, z: 0.4}
+  localPosition: {x: -1.6, y: 0, z: 0.4}
 --- !u!1 &297708790
 GameObject:
   m_ObjectHideFlags: 0
@@ -6544,8 +6544,8 @@ MonoBehaviour:
   - {fileID: 1480653055}
   - {fileID: 473847176}
   _length: 643.3
-  _viewTimeMin: -41.544483
-  _viewTimeMax: 786.23553
+  _viewTimeMin: 17.684113
+  _viewTimeMax: 703.64355
 --- !u!4 &785335440
 Transform:
   m_ObjectHideFlags: 0
@@ -8960,7 +8960,7 @@ MonoBehaviour:
   _animationData:
     _animatedParameters: []
   other: {fileID: 2042367207}
-  localPosition: {x: 0, y: 1, z: -1}
+  localPosition: {x: 1, y: 0, z: -1}
 --- !u!114 &1102782277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11414,8 +11414,8 @@ MonoBehaviour:
   - {fileID: 726074349}
   - {fileID: 113901833}
   _length: 79.4
-  _viewTimeMin: -19.074472
-  _viewTimeMax: 171.5317
+  _viewTimeMin: -3.1716423
+  _viewTimeMax: 108.26359
 --- !u!4 &1144053821
 Transform:
   m_ObjectHideFlags: 0
@@ -16987,7 +16987,7 @@ MonoBehaviour:
   _animationData:
     _animatedParameters: []
   other: {fileID: 2042367207}
-  localPosition: {x: 0, y: 1, z: -1}
+  localPosition: {x: 1, y: 0, z: -1}
 --- !u!114 &1636627496
 MonoBehaviour:
   m_ObjectHideFlags: 0

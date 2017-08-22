@@ -15889,23 +15889,23 @@
     "UAP,Version=v10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "F:\\Andrew\\HoloLens\\HoloGroup_ChemisrtyLesson_Version_1.0-master\\ChemisrtyLesson-Version_1.0\\App\\PeriodicTable\\PeriodicTable.csproj",
+      "projectUniqueName": "F:\\HoloGroupPractice\\Periodoc Table Current 560 Final\\App\\PeriodicTable\\PeriodicTable.csproj",
       "projectName": "PeriodicTable",
-      "projectPath": "F:\\Andrew\\HoloLens\\HoloGroup_ChemisrtyLesson_Version_1.0-master\\ChemisrtyLesson-Version_1.0\\App\\PeriodicTable\\PeriodicTable.csproj",
-      "projectJsonPath": "F:\\Andrew\\HoloLens\\HoloGroup_ChemisrtyLesson_Version_1.0-master\\ChemisrtyLesson-Version_1.0\\App\\PeriodicTable\\project.json",
+      "projectPath": "F:\\HoloGroupPractice\\Periodoc Table Current 560 Final\\App\\PeriodicTable\\PeriodicTable.csproj",
+      "projectJsonPath": "F:\\HoloGroupPractice\\Periodoc Table Current 560 Final\\App\\PeriodicTable\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "F:\\Andrew\\HoloLens\\HoloGroup_ChemisrtyLesson_Version_1.0-master\\ChemisrtyLesson-Version_1.0\\App\\GeneratedProjects\\UWP\\Assembly-CSharp\\Assembly-CSharp.csproj": {
-              "projectPath": "F:\\Andrew\\HoloLens\\HoloGroup_ChemisrtyLesson_Version_1.0-master\\ChemisrtyLesson-Version_1.0\\App\\GeneratedProjects\\UWP\\Assembly-CSharp\\Assembly-CSharp.csproj"
+            "F:\\HoloGroupPractice\\Periodoc Table Current 560 Final\\App\\GeneratedProjects\\UWP\\Assembly-CSharp\\Assembly-CSharp.csproj": {
+              "projectPath": "F:\\HoloGroupPractice\\Periodoc Table Current 560 Final\\App\\GeneratedProjects\\UWP\\Assembly-CSharp\\Assembly-CSharp.csproj"
             },
-            "F:\\Andrew\\HoloLens\\HoloGroup_ChemisrtyLesson_Version_1.0-master\\ChemisrtyLesson-Version_1.0\\App\\GeneratedProjects\\UWP\\Assembly-CSharp-firstpass\\Assembly-CSharp-firstpass.csproj": {
-              "projectPath": "F:\\Andrew\\HoloLens\\HoloGroup_ChemisrtyLesson_Version_1.0-master\\ChemisrtyLesson-Version_1.0\\App\\GeneratedProjects\\UWP\\Assembly-CSharp-firstpass\\Assembly-CSharp-firstpass.csproj"
+            "F:\\HoloGroupPractice\\Periodoc Table Current 560 Final\\App\\GeneratedProjects\\UWP\\Assembly-CSharp-firstpass\\Assembly-CSharp-firstpass.csproj": {
+              "projectPath": "F:\\HoloGroupPractice\\Periodoc Table Current 560 Final\\App\\GeneratedProjects\\UWP\\Assembly-CSharp-firstpass\\Assembly-CSharp-firstpass.csproj"
             }
           }
         }

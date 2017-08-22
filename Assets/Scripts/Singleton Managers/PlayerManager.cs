@@ -203,6 +203,10 @@ public class PlayerManager : Singleton<PlayerManager>
     public ProjectorController Projector { get { return projector; } }
 
     public SkipGidButton SkipGidButton { get { return skipGidButton; } }
+
+    public float StartTime { get; private set; }
+
+    public bool IsScanned { get; set; }
     #endregion
 
     #region Initialize and Start methods
@@ -226,6 +230,8 @@ public class PlayerManager : Singleton<PlayerManager>
         periodicTable = GameObject.FindObjectOfType<PeriodicTable>();
         projector = GameObject.FindObjectOfType<ProjectorController>();
         skipGidButton = GameObject.FindObjectOfType<SkipGidButton>();
+
+        StartTime = Time.time;
     }
     #endregion
 

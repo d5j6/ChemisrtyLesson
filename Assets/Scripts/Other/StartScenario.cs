@@ -19,10 +19,19 @@ public class StartScenario : MonoBehaviour
     public static BtnTap[] chaptersBtn;
 
 
-    void Start()
+    private void Update()
+    {
+       if(!PlayerManager.Instance.IsScanned && (Time.time - PlayerManager.Instance.StartTime > 5.0f))
+        {
+            PlayerManager.Instance.IsScanned = true;
+            StartTemplates();
+        }
+    }
+
+    void StartTemplates()
     {
         PeriodicTabletemplate = Instantiate(periodicTableTemplatePrefab);
-        TemplateDrag templateTableScript = PeriodicTabletemplate.GetComponentInChildren<TemplateDrag>();  
+        TemplateDrag templateTableScript = PeriodicTabletemplate.GetComponentInChildren<TemplateDrag>();
         PlayerManager.Instance.TryToDragInteractive(templateTableScript);
         OwnGestureManager.Instance.OnTapEvent += PeriodicTableDropHandler;
     }

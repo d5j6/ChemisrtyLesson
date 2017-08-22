@@ -1,9 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <UnityWSASolutionName>PeriodicTable</UnityWSASolutionName>
-        <UnityWSASolutionDir>F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\App\</UnityWSASolutionDir>
-        <UnityProjectDir>F:\Andrew\HoloLens\HoloGroup_ChemisrtyLesson_Version_1.0-master\ChemisrtyLesson-Version_1.0\</UnityProjectDir>
-        <UnityWSAPlayerDir>C:\Program Files\Unity 5.6\Editor\Data\PlaybackEngines\MetroSupport\</UnityWSAPlayerDir>
+        <UnityWSASolutionDir>F:\HoloGroupPractice\Periodoc Table Current 560 Final\App\</UnityWSASolutionDir>
+        <UnityProjectDir>F:\HoloGroupPractice\Periodoc Table Current 560 Final\</UnityProjectDir>
+        <UnityWSAPlayerDir>F:\Unity 560\Unity\Editor\Data\PlaybackEngines\MetroSupport\</UnityWSAPlayerDir>
         <UnityWSAToolsDir>$(UnityWSASolutionDir)Unity\Tools\</UnityWSAToolsDir>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
