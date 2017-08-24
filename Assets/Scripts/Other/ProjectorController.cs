@@ -7,6 +7,9 @@ using DG.Tweening;
 // AbstractFactory used for atom creation
 public class ProjectorController : MonoBehaviour, IInteractive
 {
+    public GameObject HelperColliderPrefab;
+
+    private int number = 0;
 
     [SerializeField]
     private List<ActionType> allowedActions;
@@ -110,6 +113,13 @@ public class ProjectorController : MonoBehaviour, IInteractive
 
     public void CreateAtomProjection(TableElement element)
     {
+        number++;
+
+        if (number == 1)
+        {
+            Destroy(HelperColliderPrefab);
+        }
+
         DestroyAtomProjection();
 
         _currentAtom = atomFactory.CreateAtom(element.atomName);

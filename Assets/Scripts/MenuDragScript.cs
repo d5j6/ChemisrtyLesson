@@ -6,7 +6,6 @@ using DG.Tweening;
 
 public class MenuDragScript : MonoBehaviour, IInteractive
 {
-
     [SerializeField]
     private GameObject _chaptersMenu;
 
