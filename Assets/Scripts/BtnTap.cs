@@ -62,7 +62,8 @@ public class BtnTap : MonoBehaviour, IInteractive
         switch (gameObject.name)
         {
             case "Demo":
-                CutsceneManager.Instance.PlaySectionNow(playAllSections: true);
+                CutsceneManager.Instance.PlaySectionNow(playDemo: true);
+                // CutsceneManager.Instance.PlaySectionNow(playDemo: true);
                 break;
             case "Stop":
                 CutsceneManager.Instance.SkipCutscene();
