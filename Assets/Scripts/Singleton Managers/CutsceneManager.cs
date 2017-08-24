@@ -201,7 +201,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         //    }
     }
 
-    public void PlaySectionNow(bool playAllSections = false, string sectionName = "", bool playDemo = false)
+    public void PlaySectionNow(bool playAllSections = false, string sectionName = "")
     {
         if (sectionName == "")
             sectionName = allSections[0];
@@ -211,11 +211,11 @@ public class CutsceneManager : Singleton<CutsceneManager>
         if (chaptersDictionary.ContainsKey(sectionName))
         {
             Debug.Log("!SectionName key was found: " + sectionName);
-            PlayingControll(sectionName, playDemo);
+            PlayingControll(sectionName, playAllSections);
         }
     }
 
-    private void PlayingControll(string sectionName = "", bool playDemo = false)
+    private void PlayingControll(string sectionName = "", bool playAllSections = false)
     {
         Cutscene cutscene = chaptersDictionary[sectionName];
 
@@ -233,13 +233,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         IsStop = false;
         currentSectionName = sectionName;
 
-        if (playDemo)
-        {
-            StartCoroutine(ChangeChapterDelay(sectionName, true));
-            return;
-        }
-
-        StartCoroutine(ChangeChapterDelay(sectionName));
+        StartCoroutine(ChangeChapterDelay(sectionName, playAllSections));
     }
 
     public void ChangeCutsceneState()
