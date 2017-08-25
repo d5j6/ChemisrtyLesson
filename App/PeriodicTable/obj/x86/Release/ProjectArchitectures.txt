@@ -1,0 +1,4 @@
+C:\Users\User\Documents\GitHub\ChemisrtyLesson\App\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj;x86
+C:\Users\User\Documents\GitHub\ChemisrtyLesson\App\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
+C:\Users\User\Documents\GitHub\ChemisrtyLesson\App\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
+C:\Users\User\Documents\GitHub\ChemisrtyLesson\App\PeriodicTable\PeriodicTable.csproj;x86
