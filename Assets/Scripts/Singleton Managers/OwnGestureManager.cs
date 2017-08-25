@@ -17,54 +17,30 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
         public void Alghoritm() {  }
     }
 
-    private class GestureStandartStrategy : IGestureStrategy
-    {
-        public void Alghoritm()
-        {
-            
-
-            if(Instance.onTapEvent != null)
-            {
-                
-                Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocused);
-            }
-
-            //if (Instance.navStart != null)
-            //{
-            //    Instance.navStart.Invoke(OwnGazeManager.Instance.currentFocused);
-            //}
-
-            //if (Instance.navUpdate != null)
-            //{
-            //    Instance.navUpdate.Invoke(OwnGazeManager.Instance.currentFocused);
-            //}
-        }
-    }
-
     private class GestureResizeStrategy : IGestureStrategy
     {
         public void Alghoritm()
         {
-            if (OwnGazeManager.Instance.hitObjectType != OwnGazeManager.HitObjectType.Interactive)
+            if (OwnGazeManager.Instance.HitObjectType != OwnGazeManager.HitObjectTypes.Interactive)
             {
                 return;
             }
 
-            if (Instance.onTapEvent != null)
+            if (Instance.OnTapEvent != null)
             {
-                Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocused);
+                Instance.OnTapEvent.Invoke(OwnGazeManager.Instance.CurrentFocused);
             }
 
-            if (Instance.navStart != null)
+            if (Instance.NavStart != null)
             {
                 Debug.Log("Nav Start");
-                Instance.navStart.Invoke(OwnGazeManager.Instance.currentFocused);
+                Instance.NavStart.Invoke(OwnGazeManager.Instance.CurrentFocused);
             }
 
-            if (Instance.navUpdate != null)
+            if (Instance.NavUpdate != null)
             {
                 Debug.Log("Nav Update");
-                Instance.navUpdate.Invoke(OwnGazeManager.Instance.currentFocused);
+                Instance.NavUpdate.Invoke(OwnGazeManager.Instance.CurrentFocused);
             }
             else
             {
@@ -77,33 +53,47 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
     {
         public void Alghoritm()
         {
-            if(OwnGazeManager.Instance.hitObjectType != OwnGazeManager.HitObjectType.Spatial)
+            if(OwnGazeManager.Instance.HitObjectType != OwnGazeManager.HitObjectTypes.Spatial)
             {
                 return;
             }
 
-            if(Instance.onTapEvent != null)
+            if(Instance.OnTapEvent != null)
             {
-                Instance.onTapEvent.Invoke(null);
+                Instance.OnTapEvent.Invoke(null);
             }
         }
     }
 
-    private class GestureDemonstrationStrategy : IGestureStrategy
+    private class GestureDefaultStrategy : IGestureStrategy
     {
         public void Alghoritm()
         {
-            if(Instance.onTapEvent != null)
-            {                
-                if (OwnGazeManager.Instance.currentFocusedReset != null)
+            if(Instance.OnTapEvent != null)
+            {
+                //Определяем, в какой обект упирается взгляд пользователя
+                //Если пользователь смотрит на кнопку "Free mode", то вызываем нажатие на эту кнопку и смену режимов
+                if (OwnGazeManager.Instance.CurrentFocusedReset != null)
                 {
-                    
-                    Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedReset);
+                    //Однако от данной конпки мы отказываемся, так что здесь не нужно какое-либо действие
+
+                    //Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedReset);
+                    //return;
+                }
+
+                //Если пользователь смотрит на кнопку меню, реализуем нажатие на выбранную кнопку
+                if(OwnGazeManager.Instance.CurrentFocusedChapter != null)
+                {
+                    Instance.OnTapEvent.Invoke(OwnGazeManager.Instance.CurrentFocusedChapter);
                     return;
                 }
 
-                Debug.Log("!GestureDemonstrationStrategy. OnTapEvent with " + OwnGazeManager.Instance.currentFocusedChapter.name);
-                Instance.onTapEvent.Invoke(OwnGazeManager.Instance.currentFocusedChapter);
+                //Еслиже пользователь палит в элемент таблицы, реализуем нажатие на выбранный элемент
+                if (OwnGazeManager.Instance.CurrentFocused != null)
+                {
+                    Instance.OnTapEvent.Invoke(OwnGazeManager.Instance.CurrentFocused);
+                    return;
+                }
             }
         }
     }
@@ -111,134 +101,120 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
     #endregion
 
     #region Properties
-    private bool _isInitialized;
+    private bool isInitialized;
 
-    private IGestureStrategy _strategy;
+    private IGestureStrategy strategy;
 
     public KeyCode editorTapKey = KeyCode.F;
-    private GestureRecognizer _tapGestureRecognizer;
 
-    public event Action<IInteractive> onTapEvent;
-    public event Action<IInteractive> navStart;
-    public event Action<IInteractive> navUpdate;
-    public event Action<IInteractive> navComplete;
-    public event Action<IInteractive> navCancel;
+    private GestureRecognizer tapGestureRecognizer;
 
-    private string _strategyName;
+    public event Action<IInteractive> OnTapEvent;
+    public event Action<IInteractive> NavStart;
+    public event Action<IInteractive> NavUpdate;
+    public event Action<IInteractive> NavComplete;
+    public event Action<IInteractive> NavCancel;
+
+    private string strategyName;
     #endregion
 
     public void ChangeStrategyToNone()
     {
-        if (_tapGestureRecognizer.IsCapturingGestures())
-            _tapGestureRecognizer.StopCapturingGestures();
+        if (tapGestureRecognizer.IsCapturingGestures())
+            tapGestureRecognizer.StopCapturingGestures();
 
-        _strategy = new GestureNoneStrategy();
-        _strategyName = _strategy.GetType().ToString();
+        strategy = new GestureNoneStrategy();
+        strategyName = strategy.GetType().ToString();
 
-        _tapGestureRecognizer.StartCapturingGestures();
-    }                                       
+        tapGestureRecognizer.StartCapturingGestures();
+    }
 
-    public void ChangeStrategyToStandart()
+    public void ChangeStrategyToDefault()
     {
-        if (_tapGestureRecognizer.IsCapturingGestures())
-            _tapGestureRecognizer.StopCapturingGestures();
+        if (tapGestureRecognizer.IsCapturingGestures())
+            tapGestureRecognizer.StopCapturingGestures();
 
-        _strategy = new GestureStandartStrategy();
-        _strategyName = _strategy.GetType().ToString();
+        strategy = new GestureDefaultStrategy();
+        strategyName = strategy.GetType().ToString();
 
-        _tapGestureRecognizer.StartCapturingGestures();
-
-        
+        tapGestureRecognizer.StartCapturingGestures();
     }
 
     public void ChangeStrategyToResize()
     {
-        if (_tapGestureRecognizer.IsCapturingGestures())
-            _tapGestureRecognizer.StopCapturingGestures();
+        if (tapGestureRecognizer.IsCapturingGestures())
+            tapGestureRecognizer.StopCapturingGestures();
 
-        _strategy = new GestureResizeStrategy();
-        _strategyName = _strategy.GetType().ToString();
+        strategy = new GestureResizeStrategy();
+        strategyName = strategy.GetType().ToString();
 
-        _tapGestureRecognizer.StartCapturingGestures();
+        tapGestureRecognizer.StartCapturingGestures();
 
         
     }
 
     public void ChangeStrategyToDragAndDrop()
     {
-        if(_tapGestureRecognizer.IsCapturingGestures())
-            _tapGestureRecognizer.StopCapturingGestures();
+        if(tapGestureRecognizer.IsCapturingGestures())
+            tapGestureRecognizer.StopCapturingGestures();
 
-        _strategy = new GestureDragAndDropStrategy();
-        _strategyName = _strategy.GetType().ToString();
+        strategy = new GestureDragAndDropStrategy();
+        strategyName = strategy.GetType().ToString();
 
-        _tapGestureRecognizer.StartCapturingGestures();
-
-        
-    }
-
-    public void ChangeStrategyToDemonstration()
-    {
-        if (_tapGestureRecognizer.IsCapturingGestures())
-            _tapGestureRecognizer.StopCapturingGestures();
-
-        _strategy = new GestureDemonstrationStrategy();
-        _strategyName = _strategy.GetType().ToString();
-
-        _tapGestureRecognizer.StartCapturingGestures();
+        tapGestureRecognizer.StartCapturingGestures();
 
         
     }
 
     public void Initialize()
     {
-        if(_isInitialized)
+        if(isInitialized)
         {
             return;
         }
 
-        _tapGestureRecognizer = new GestureRecognizer();
+        tapGestureRecognizer = new GestureRecognizer();
 
-        _tapGestureRecognizer.SetRecognizableGestures(GestureSettings.Tap | GestureSettings.NavigationX);
-        _tapGestureRecognizer.TappedEvent += OnTap;
-        _tapGestureRecognizer.NavigationStartedEvent += NavigationStart;
-        _tapGestureRecognizer.NavigationUpdatedEvent += NavigationUpdate;
-        _tapGestureRecognizer.NavigationCompletedEvent += NavigationComplete;
-        _tapGestureRecognizer.NavigationCanceledEvent += NavigationCansel;
+        tapGestureRecognizer.SetRecognizableGestures(GestureSettings.Tap | GestureSettings.NavigationX);
+        tapGestureRecognizer.TappedEvent += OnTap;
+        tapGestureRecognizer.NavigationStartedEvent += NavigationStart;
+        tapGestureRecognizer.NavigationUpdatedEvent += NavigationUpdate;
+        tapGestureRecognizer.NavigationCompletedEvent += NavigationComplete;
+        tapGestureRecognizer.NavigationCanceledEvent += NavigationCansel;
 
         //Debug.Log("Events initialized");
 
         ChangeStrategyToNone();
 
-        _isInitialized = true;
+        isInitialized = true;
     }
 
     void OnTap(InteractionSourceKind source, int tapCount, Ray headRay)
     {
         
         
-        _strategy.Alghoritm();
+        strategy.Alghoritm();
     }
 
     void NavigationStart(InteractionSourceKind source, Vector3 normalOffset, Ray headRay)
     {
         Debug.Log("Works navStart");
-        _strategy.Alghoritm();
+        strategy.Alghoritm();
     }
 
     void NavigationUpdate(InteractionSourceKind source, Vector3 normalOffset, Ray headRay)
     {
-        _strategy.Alghoritm();
+        strategy.Alghoritm();
     }
 
     void NavigationComplete(InteractionSourceKind source, Vector3 normalOffset, Ray headRay)
     {
-        _strategy.Alghoritm();
+        strategy.Alghoritm();
     }
 
     void NavigationCansel(InteractionSourceKind source, Vector3 normalOffset, Ray headRay)
     {
-        _strategy.Alghoritm();
+        strategy.Alghoritm();
     }
 
 #if UNITY_EDITOR
@@ -246,8 +222,8 @@ public class OwnGestureManager : Singleton<OwnGestureManager>
     {
         if(Input.GetKeyDown(editorTapKey))
         {
-            Debug.Log("!" + _strategyName);
-            _strategy.Alghoritm();
+            Debug.Log("!" + strategyName);
+            strategy.Alghoritm();
         }
     }
 #endif

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class BtnTap : MonoBehaviour, IInteractive
 {
+    private AudioSource audioSource;
+
     [SerializeField]
     private string chapterName;
 
@@ -32,13 +34,13 @@ public class BtnTap : MonoBehaviour, IInteractive
     {
         _text = GetComponentInChildren<Text>();
         _text.color = Color.white;
+
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+        audioSource = AudioManager.Instance.AudioSourceSettings(audioSource);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Update() { }
 
     public List<ActionType> GetAllowedActions()
     {
@@ -47,9 +49,9 @@ public class BtnTap : MonoBehaviour, IInteractive
 
     public void OnGestureTap()
     {
-        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration)
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default)
         {
-
+            audioSource.Play();
             RunAnumation();
         }
     }
@@ -60,7 +62,8 @@ public class BtnTap : MonoBehaviour, IInteractive
         switch (gameObject.name)
         {
             case "Demo":
-                CutsceneManager.Instance.PlaySectionNow(playAllSections: true);
+                CutsceneManager.Instance.PlaySectionNow(playDemo: true);
+                // CutsceneManager.Instance.PlaySectionNow(playDemo: true);
                 break;
             case "Stop":
                 CutsceneManager.Instance.SkipCutscene();
@@ -77,7 +80,7 @@ public class BtnTap : MonoBehaviour, IInteractive
 
     public void OnGazeEnter()
     {
-        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration &&
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default &&
             !isActiveBtn)
             HighlightMenuItem();
     }
@@ -85,7 +88,7 @@ public class BtnTap : MonoBehaviour, IInteractive
 
     public void OnGazeLeave()
     {
-        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Demonstration &&
+        if (PlayerManager.Instance.Strategy == InputStrategyFacade.Strategies.Default &&
             !isActiveBtn)
             DehighlightMenuItem();
     }

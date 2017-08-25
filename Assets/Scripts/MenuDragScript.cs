@@ -6,7 +6,6 @@ using DG.Tweening;
 
 public class MenuDragScript : MonoBehaviour, IInteractive
 {
-
     [SerializeField]
     private GameObject _chaptersMenu;
 
@@ -74,7 +73,7 @@ public class MenuDragScript : MonoBehaviour, IInteractive
         {
             _chaptersMenu.transform.position = Vector3.Lerp(_chaptersMenu.transform.position, OwnCursorManager.Instance.cursor.position, Time.deltaTime * 8f);
             //_chaptersMenu.transform.rotation = Quaternion.Slerp(_chaptersMenu.transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f);
-            _chaptersMenu.transform.rotation = Quaternion.LookRotation(-OwnGazeManager.Instance.pointNormal);
+            _chaptersMenu.transform.rotation = Quaternion.LookRotation(-OwnGazeManager.Instance.PointNormal);
             //Vector3 eulerAngle = _chaptersMenu.transform.rotation.eulerAngles;
             //Vector3 test = Vector3.Lerp(_chaptersMenu.transform.rotation.eulerAngles, OwnCursorManager.Instance.cursor.rotation.eulerAngles, Time.deltaTime);
             //test.y *= -1;
@@ -87,8 +86,8 @@ public class MenuDragScript : MonoBehaviour, IInteractive
     {
         StopCoroutine(_dragCoroutine);
 
-        _chaptersMenu.transform.position = OwnGazeManager.Instance.hitPoint + new Vector3(0f,0f,-0.05f);
-        _chaptersMenu.transform.rotation = Quaternion.LookRotation(-OwnGazeManager.Instance.pointNormal);
+        _chaptersMenu.transform.position = OwnGazeManager.Instance.HitPoint + new Vector3(0f,0f,-0.05f);
+        _chaptersMenu.transform.rotation = Quaternion.LookRotation(-OwnGazeManager.Instance.PointNormal);
 
         ChangeLayerRecursively(_chaptersMenu, _oldLayer);
     }

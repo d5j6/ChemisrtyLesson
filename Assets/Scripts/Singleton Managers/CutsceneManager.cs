@@ -201,7 +201,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         //    }
     }
 
-    public void PlaySectionNow(bool playAllSections = false, string sectionName = "", bool playDemo = false)
+    public void PlaySectionNow(bool playDemo = false, string sectionName = "")
     {
         if (sectionName == "")
             sectionName = allSections[0];
@@ -233,11 +233,15 @@ public class CutsceneManager : Singleton<CutsceneManager>
         IsStop = false;
         currentSectionName = sectionName;
 
+        StartCoroutine(ChangeChapterDelay(sectionName, playDemo));
+
+        /*
         if (playDemo)
         {
             StartCoroutine(ChangeChapterDelay(sectionName, true));
             return;
         }
+        */
 
         StartCoroutine(ChangeChapterDelay(sectionName));
     }
@@ -338,7 +342,8 @@ public class CutsceneManager : Singleton<CutsceneManager>
                     canPlay = false;
                     isSkipped = false;
 
-                    currentCutscene.PlaySection(item, Cutscene.WrapMode.Once, () => Test3(ref canPlay, item));
+
+                    chaptersDictionary[item].PlaySection(item, Cutscene.WrapMode.Once, () => Test3(ref canPlay, item));
                     ActivateButton(item);
                 }
 

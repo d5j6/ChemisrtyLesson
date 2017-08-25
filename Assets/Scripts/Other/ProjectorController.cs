@@ -7,6 +7,10 @@ using DG.Tweening;
 // AbstractFactory used for atom creation
 public class ProjectorController : MonoBehaviour, IInteractive
 {
+    public GameObject HelperColliderPrefab;
+
+    private int number = 0;
+
     [SerializeField]
     private List<ActionType> allowedActions;
 
@@ -64,8 +68,8 @@ public class ProjectorController : MonoBehaviour, IInteractive
     {
         StopCoroutine(_dragCoroutine);
 
-        gameObject.transform.position = OwnGazeManager.Instance.hitPoint;
-        gameObject.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.pointNormal);
+        this.gameObject.transform.position = OwnGazeManager.Instance.HitPoint;
+        this.gameObject.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.PointNormal);
 
         ChangeLayerRecursively(gameObject, _oldLayer);
     }
@@ -85,8 +89,8 @@ public class ProjectorController : MonoBehaviour, IInteractive
     {
         while(true)
         {
-            transform.position = Vector3.Lerp(gameObject.transform.position, OwnCursorManager.Instance.cursor.position, Time.deltaTime * 8f);
-            transform.rotation = Quaternion.Slerp(transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f) ;
+            this.gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, OwnCursorManager.Instance.cursor.position, Time.deltaTime * 8f);
+            this.gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f) ;
 
             yield return null;
         }
@@ -109,6 +113,13 @@ public class ProjectorController : MonoBehaviour, IInteractive
 
     public void CreateAtomProjection(TableElement element)
     {
+        number++;
+
+        if (number == 1)
+        {
+            Destroy(HelperColliderPrefab);
+        }
+
         DestroyAtomProjection();
 
         _currentAtom = atomFactory.CreateAtom(element.atomName);

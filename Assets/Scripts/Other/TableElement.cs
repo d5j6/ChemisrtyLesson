@@ -6,6 +6,8 @@ using TMPro;
 
 public class TableElement : MonoBehaviour, IInteractive
 {
+    private AudioSource audioSource;
+
     private PeriodicTable _periodicTable;
 
     [SerializeField]
@@ -40,11 +42,17 @@ public class TableElement : MonoBehaviour, IInteractive
         _isSelected = false;
     }
 
+    void Start()
+    {
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+        audioSource = AudioManager.Instance.AudioSourceSettings(audioSource);
+    }
+
     public List<ActionType> GetAllowedActions() { return _allowedActions; }
 
     public void OnGazeEnter()
     {
-        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart ||
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Default ||
             _isSelected)
             return;
 
@@ -55,7 +63,7 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void OnGazeLeave()
     {
-        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart ||
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Default ||
             _isSelected)
             return;
 
@@ -85,8 +93,10 @@ public class TableElement : MonoBehaviour, IInteractive
     {
         Debug.Log("!Tapped the element " + _atomName);
 
-        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Standart)
+        if (PlayerManager.Instance.Strategy != InputStrategyFacade.Strategies.Default)
             return;
+
+        audioSource.Play();
 
         if (!_isSelected)
         {
@@ -106,8 +116,6 @@ public class TableElement : MonoBehaviour, IInteractive
 
     public void Select()
     {
-        
-
         _isSelected = true;
         _elementText.color = _selectColor;
 

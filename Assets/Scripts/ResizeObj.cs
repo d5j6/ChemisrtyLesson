@@ -89,8 +89,8 @@ public class ResizeObj : MonoBehaviour, IInteractive
     {
         StopCoroutine(_dragCoroutine);
 
-        _chaptersMenu.transform.position = OwnGazeManager.Instance.hitPoint + new Vector3(0f, 0f, -0.05f);
-        _chaptersMenu.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.pointNormal);
+        _chaptersMenu.transform.position = OwnGazeManager.Instance.HitPoint + new Vector3(0f, 0f, -0.05f);
+        _chaptersMenu.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.PointNormal);
 
         ChangeLayerRecursively(_chaptersMenu, _oldLayer);
     }

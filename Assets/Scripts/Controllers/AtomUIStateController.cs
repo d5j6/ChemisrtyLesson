@@ -78,13 +78,12 @@ public class AtomUIStateController : MonoBehaviour
     void Awake()
     {
         _projector = GetComponentInParent<ProjectorController>();
-
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
     }
 
     void Update()
     {
-        transform.LookAt(Camera.main.transform.position);
+       transform.LookAt(Camera.main.transform.position);
     }
 
     public void ChangeLocalViewTo3D(bool to3D)

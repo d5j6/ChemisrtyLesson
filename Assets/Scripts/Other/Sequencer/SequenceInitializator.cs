@@ -1329,7 +1329,7 @@ public class SequenceInitializator : MonoBehaviour
 
         //    Destroy(professor.gameObject, 1f);
 
-        //    PlayerManager.Instance.ChangeStateToStandart();
+        //    PlayerManager.Instance.ChangeStateToDefault();
         //});
 
         #endregion

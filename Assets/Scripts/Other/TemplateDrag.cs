@@ -37,8 +37,8 @@ public class TemplateDrag : MonoBehaviour, IInteractive
     {
         StopCoroutine(_dragCoroutine);
 
-        _rootObject.transform.position = OwnGazeManager.Instance.hitPoint;
-        _rootObject.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.pointNormal);
+        _rootObject.transform.position = OwnGazeManager.Instance.HitPoint;
+        _rootObject.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.PointNormal);
         
         ChangeLayerRecursively(_rootObject, _oldLayer);
     }

@@ -12,8 +12,7 @@ public class PlayerManager : Singleton<PlayerManager>
         void OnGestureTapHandler(IInteractive interactive);
         void TryToDragInteractive(IInteractive interactive);
         void StopDraggingInteractive(IInteractive draggingInteractive);
-        void ChangeStateToDemonstration();
-        void ChangeStateToStandart();
+        void ChangeStateToDefault();
     }
 
     private interface IResizable : IPlayerState
@@ -21,7 +20,7 @@ public class PlayerManager : Singleton<PlayerManager>
         
     }
 
-    private class PlayerStandartState : IPlayerState
+    private class PlayerDefaultState : IPlayerState
     {
         public void OnGazeEnterHandler(IInteractive interactive)
         {
@@ -42,24 +41,24 @@ public class PlayerManager : Singleton<PlayerManager>
             ActionType allowedActionType = allowedActionTypes[0];
 
             //foreach(ActionType allowedActionType in allowedActionTypes)
-                switch (allowedActionType)
-                {
-                    case ActionType.TapOnly:
-                        
-                        new TapCommand(interactive).Execute();
-                        break;
-                    case ActionType.DragAndDrop:
-                        TryToDragInteractive(interactive);
-                        break;
-                    case ActionType.Resize:
-                        TryToResizeInteractive(interactive);
-                        break;
-                    default:
-                        break;
-                }
+            switch (allowedActionType)
+            {
+                case ActionType.TapOnly:
+
+                    new TapCommand(interactive).Execute();
+                    break;
+                case ActionType.DragAndDrop:
+                    TryToDragInteractive(interactive);
+                    break;
+                case ActionType.Resize:
+                    TryToResizeInteractive(interactive);
+                    break;
+                default:
+                    break;
+            }
         }
 
-        public void TryToResizeInteractive (IInteractive interactive)
+        public void TryToResizeInteractive(IInteractive interactive)
         {
             new ResizeCommand(interactive).Execute();
         }
@@ -71,14 +70,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
         public void StopDraggingInteractive(IInteractive draggingInteractive) { }
 
-        public void ChangeStateToDemonstration()
-        {
-            Instance._inputFacade.ChangeStrategyToDemonstration();
-            Instance._state = new PlayerDemonstrationState();
-            Instance._stateName = Instance._state.GetType().ToString();
-        }
-
-        public void ChangeStateToStandart() { }
+        public void ChangeStateToDefault() { }
     }
 
     private class PlayerDragAndDropState : IPlayerState
@@ -92,7 +84,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
         public void ChangeStateToDemonstration() { }
 
-        public void ChangeStateToStandart() { }
+        public void ChangeStateToDefault() { }
 
         public void OnGazeEnterHandler(IInteractive interactive) { }
 
@@ -112,44 +104,11 @@ public class PlayerManager : Singleton<PlayerManager>
 
             draggingInteractive.StopDrag();
 
-            Instance._state = new PlayerStandartState();
-            Instance._stateName = Instance._state.GetType().ToString();
+            Instance.state = new PlayerDefaultState();
+            Instance._stateName = Instance.state.GetType().ToString();
 
-            Instance._inputFacade.ChangeStrategyToStandart();
-            //Instance._inputFacade.ChangeStrategyToDemonstration();
+            Instance._inputFacade.ChangeStrategyToDefault();
         }
-
-        public void TryToDragInteractive(IInteractive interactive) { }
-    }
-
-    private class PlayerDemonstrationState : IPlayerState
-    {
-        public void ChangeStateToDemonstration() { }
-
-        public void ChangeStateToStandart()
-        {
-            Instance._inputFacade.ChangeStrategyToStandart();
-            Instance._state = new PlayerStandartState();
-            Instance._stateName = Instance._state.GetType().ToString();
-        }
-
-        public void OnGazeEnterHandler(IInteractive interactive)
-        {
-            interactive.OnGazeEnter();
-        }
-
-        public void OnGazeLeaveHandler(IInteractive interactive)
-        {
-              interactive.OnGazeLeave();
-        }
-
-        public void OnGestureTapHandler(IInteractive interactive)
-        {
-            
-            new TapCommand(interactive).Execute();
-        }
-
-        public void StopDraggingInteractive(IInteractive draggingInteractive) { }
 
         public void TryToDragInteractive(IInteractive interactive) { }
     }
@@ -191,8 +150,8 @@ public class PlayerManager : Singleton<PlayerManager>
             {
                 Instance._inputFacade.ChangeStrategyToDragAndDrop();
 
-                Instance._state = new PlayerDragAndDropState(_interactive);
-                Instance._stateName = Instance._state.GetType().ToString();
+                Instance.state = new PlayerDragAndDropState(_interactive);
+                Instance._stateName = Instance.state.GetType().ToString();
             }
         }
     }
@@ -212,8 +171,8 @@ public class PlayerManager : Singleton<PlayerManager>
             {
                 Instance._inputFacade.ChangeStrategyToResize();
 
-                Instance._state = new PlayerStandartState();
-                Instance._stateName = Instance._state.GetType().ToString();
+                Instance.state = new PlayerDefaultState();
+                Instance._stateName = Instance.state.GetType().ToString();
             }
         }
     }
@@ -223,7 +182,7 @@ public class PlayerManager : Singleton<PlayerManager>
     #region Fields
     private bool _isInitialized;
 
-    private IPlayerState _state;
+    private IPlayerState state;
 
     private InputStrategyFacade _inputFacade;
 
@@ -244,6 +203,10 @@ public class PlayerManager : Singleton<PlayerManager>
     public ProjectorController Projector { get { return projector; } }
 
     public SkipGidButton SkipGidButton { get { return skipGidButton; } }
+
+    public float StartTime { get; private set; }
+
+    public bool IsScanned { get; set; }
     #endregion
 
     #region Initialize and Start methods
@@ -254,78 +217,85 @@ public class PlayerManager : Singleton<PlayerManager>
             return;
         }
 
-        _state = new PlayerStandartState();
-        _stateName = _state.GetType().ToString();
+        state = new PlayerDefaultState();
+        _stateName = state.GetType().ToString();
 
         _inputFacade = new InputStrategyFacade();
 
         _inputFacade.SetListeners(OnGazeEnterHandler, OnGazeLeaveHandler, OnGestureTapHandler);
         _inputFacade.SetListeneresForNavigation(OnNavigationStart, OnNavigationUpdate);
-        _inputFacade.ChangeStrategyToStandart();
+        _inputFacade.ChangeStrategyToDefault();
         _isInitialized = true;
 
         periodicTable = GameObject.FindObjectOfType<PeriodicTable>();
         projector = GameObject.FindObjectOfType<ProjectorController>();
         skipGidButton = GameObject.FindObjectOfType<SkipGidButton>();
+
+        StartTime = Time.time;
     }
     #endregion
 
     #region Input events handlers
     void OnGazeEnterHandler(IInteractive interactive)
     {
-        _state.OnGazeEnterHandler(interactive);
+        state.OnGazeEnterHandler(interactive);
     }
 
     void OnGazeLeaveHandler(IInteractive interactive)
     {
-        _state.OnGazeLeaveHandler(interactive);
+        state.OnGazeLeaveHandler(interactive);
     }
 
     void OnGestureTapHandler(IInteractive interactive)
     {
-        _state.OnGestureTapHandler(interactive);
+        state.OnGestureTapHandler(interactive);
     }
 
     void OnNavigationStart(IInteractive interactive)
     {
-        _state.OnGestureTapHandler(interactive);
+        state.OnGestureTapHandler(interactive);
     }
 
     void OnNavigationUpdate(IInteractive interactive)
     {
-        _state.OnGestureTapHandler(interactive);
+        state.OnGestureTapHandler(interactive);
     }
     #endregion
 
     public void TapOnInteractive(IInteractive interactive)
     {
-        _state.OnGestureTapHandler(interactive);
+        state.OnGestureTapHandler(interactive);
     }
 
     public void TryToDragInteractive(IInteractive interactive)
     {
-        _state.TryToDragInteractive(interactive);
+        state.TryToDragInteractive(interactive);
     }
 
     public void StopDraggingInteractive(IInteractive draggingInteractive)
     {
-        _state.StopDraggingInteractive(draggingInteractive);
+        state.StopDraggingInteractive(draggingInteractive);
     }
 
-    public void ChangeStateToDemonstration()
+    public void ChangeStateToDefault()
     {
-        CutsceneManager.Instance.ActivateButton();
-        _state.ChangeStateToDemonstration();
+        state.ChangeStateToDefault();
     }
 
-    public void ChangeStateToStandart()
-    {
-        if (!CutsceneManager.Instance.IsStop)
-        {
-            CutsceneManager.Instance.StopCutscene();
-            CutsceneManager.Instance.DeactivateButton();
-        }
+    //public void ChangeStateToDemonstration()
+    //{
+    //    CutsceneManager.Instance.ActivateButton();
+    //    state.ChangeStateToDemonstration();
+    //}
 
-        _state.ChangeStateToStandart();
-    }
+    //public void ChangeStateToStandart()
+    //{
+    //    if (!CutsceneManager.Instance.IsStop)
+    //    {
+    //        CutsceneManager.Instance.StopCutscene();
+    //        CutsceneManager.Instance.DeactivateButton();
+    //    }
+
+    //    state.ChangeStateToDefault();
+    //}
 }

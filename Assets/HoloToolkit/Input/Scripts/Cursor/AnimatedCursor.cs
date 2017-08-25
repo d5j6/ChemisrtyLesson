@@ -3,7 +3,6 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace HoloToolkit.Unity.InputModule
 {
