@@ -5,6 +5,16 @@ public class OwnCursorManager : Singleton<OwnCursorManager>
 {
     public Transform cursor;
 
+    public void DisableCursor()
+    {
+        cursor.gameObject.SetActive(false);
+    }
+
+    public void EnableCursor()
+    {
+        cursor.gameObject.SetActive(true);
+    }
+
     [SerializeField]
     private float cursorIdleDistance = 4f;
 

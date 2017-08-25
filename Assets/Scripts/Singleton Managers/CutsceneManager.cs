@@ -234,16 +234,6 @@ public class CutsceneManager : Singleton<CutsceneManager>
         currentSectionName = sectionName;
 
         StartCoroutine(ChangeChapterDelay(sectionName, playDemo));
-
-        /*
-        if (playDemo)
-        {
-            StartCoroutine(ChangeChapterDelay(sectionName, true));
-            return;
-        }
-        */
-
-        StartCoroutine(ChangeChapterDelay(sectionName));
     }
 
     public void ChangeCutsceneState()
@@ -327,7 +317,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
 
         if (isAllSections)
         {
-            SkipCutscene();
+            SkipCutscene(sectionName);
 
             yield return new WaitForSeconds(.5f);
 
@@ -342,7 +332,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
                     canPlay = false;
                     isSkipped = false;
 
-                    currentCutscene.PlaySection(item, Cutscene.WrapMode.Once, () => Test3(ref canPlay, item));
+                    currentCutscene.PlaySection(item, Cutscene.WrapMode.Once, () => StartPlayingAll(ref canPlay, item));
                     ActivateButton(item);
                 }
 
@@ -361,7 +351,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         }
     }
 
-    private void Test3(ref bool canPlay, string sectionName)
+    private void StartPlayingAll(ref bool canPlay, string sectionName)
     {
         if (!isSkipped)
         {

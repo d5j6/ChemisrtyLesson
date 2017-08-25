@@ -77,7 +77,7 @@ public class OwnDirectionIndicator : MonoBehaviour {
     {
         Vector3 cameraWorldToViewPortVector = Camera.main.WorldToViewportPoint(gameObject.transform.position);
 
-        return (cameraWorldToViewPortVector.x > (visibleFactor - 0.5f) && cameraWorldToViewPortVector.x < ((1 - visibleFactor) + 0.2f) && cameraWorldToViewPortVector.y > (visibleFactor - 0.15f) &&
+        return (cameraWorldToViewPortVector.x > (visibleFactor - 0.5f) && cameraWorldToViewPortVector.x < ((1 - visibleFactor) + 1.5f) && cameraWorldToViewPortVector.y > (visibleFactor - 0.5f) &&
                 cameraWorldToViewPortVector.y < 1 - (visibleFactor - 0.2f) && cameraWorldToViewPortVector.z > 0);
     }
 }

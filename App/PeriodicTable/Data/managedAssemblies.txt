@@ -1,0 +1,12 @@
+Assembly-CSharp.dll
+Newtonsoft.Json.dll
+DOTween50.dll
+nunit.framework.dll
+UnityEngine.UI.dll
+DOTween43.dll
+UnityEngine.HoloLens.dll
+UnityEngine.Networking.dll
+DOTween.dll
+DOTween46.dll
+UnityEngine.VR.dll
+Vectrosity.dll
