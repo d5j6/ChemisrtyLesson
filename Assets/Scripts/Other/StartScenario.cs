@@ -4,6 +4,8 @@ using System;
 
 public class StartScenario : Singleton<StartScenario>
 {
+    public GameObject SpatialMappingTextPrefab;
+
     public GameObject periodicTableTemplatePrefab;
     private GameObject PeriodicTabletemplate;
 
@@ -20,9 +22,14 @@ public class StartScenario : Singleton<StartScenario>
 
     public bool IsPeriodicTableActive { get; private set; }
 
+    void Start()
+    {
+        OwnCursorManager.Instance.DisableCursor();
+    }
+
     private void Update()
     {
-        if(!PlayerManager.Instance.IsScanned && (Time.time - PlayerManager.Instance.StartTime > 5.0f))
+        if (!PlayerManager.Instance.IsScanned && (Time.time - PlayerManager.Instance.StartTime > 10.0f))
         {
             PlayerManager.Instance.IsScanned = true;
             StartTemplates();
@@ -31,6 +38,8 @@ public class StartScenario : Singleton<StartScenario>
 
     void StartTemplates()
     {
+        OwnCursorManager.Instance.EnableCursor();
+        Destroy(SpatialMappingTextPrefab);
         IsPeriodicTableActive = false;
 
         PeriodicTabletemplate = Instantiate(periodicTableTemplatePrefab);

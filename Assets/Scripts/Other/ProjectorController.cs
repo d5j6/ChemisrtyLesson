@@ -37,11 +37,16 @@ public class ProjectorController : MonoBehaviour, IInteractive
 
     public bool IsProjectingAtom { get; private set; }
 
+    private bool isSharingFirstTime;
+    public bool IsSharing { get; set; }
+
     void Awake()
     {
         _material = GetComponentInChildren<MeshRenderer>().material;
         atomFactory = new AtomFactory();
         IsProjectingAtom = false;
+        isSharingFirstTime = true;
+        IsSharing = false;
     }
 
     public List<ActionType> GetAllowedActions()
@@ -91,6 +96,16 @@ public class ProjectorController : MonoBehaviour, IInteractive
         {
             this.gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, OwnCursorManager.Instance.cursor.position, Time.deltaTime * 8f);
             this.gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f) ;
+
+            if (isSharingFirstTime || IsSharing)
+            {
+                isSharingFirstTime = false;
+                SV_Sharing.Instance.SendTransform(
+                    this.gameObject.transform.position,
+                    this.gameObject.transform.rotation,
+                    this.gameObject.transform.localScale,
+                    "projector_pos");
+            }
 
             yield return null;
         }

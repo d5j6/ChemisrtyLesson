@@ -1,9 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <UnityWSASolutionName>PeriodicTable</UnityWSASolutionName>
-        <UnityWSASolutionDir>C:\Users\User\Documents\GitHub\ChemisrtyLesson\App\</UnityWSASolutionDir>
-        <UnityProjectDir>C:\Users\User\Documents\GitHub\ChemisrtyLesson\</UnityProjectDir>
-        <UnityWSAPlayerDir>F:\Unity 560\Unity\Editor\Data\PlaybackEngines\MetroSupport\</UnityWSAPlayerDir>
+        <UnityWSASolutionDir>D:\Documents\HOLO\Unity\ChemisrtyLesson\App\</UnityWSASolutionDir>
+        <UnityProjectDir>D:\Documents\HOLO\Unity\ChemisrtyLesson\</UnityProjectDir>
+        <UnityWSAPlayerDir>C:\Program Files\Unity5.5.1\Editor\Data\PlaybackEngines\MetroSupport\</UnityWSAPlayerDir>
         <UnityWSAToolsDir>$(UnityWSASolutionDir)Unity\Tools\</UnityWSAToolsDir>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>

@@ -16,7 +16,6 @@ public class SV_HandlerBankEvents : SpectatorView.SV_Singleton<SV_HandlerBankEve
 
     private Transform _target;
     private AtomUIStateController atomUIStateController;
-
     #endregion
 
     #region Public Properties
@@ -59,9 +58,22 @@ public class SV_HandlerBankEvents : SpectatorView.SV_Singleton<SV_HandlerBankEve
 
             case "projector":
                 Target = PlayerManager.Instance.Projector.transform;
+                PlayerManager.Instance.Projector.IsSharing = true;
                 if (Target != null)
                     ApplyTransform(msg);
-                DataManager.Instance.InitializeDictionaries();
+                    DataManager.Instance.InitializeDictionaries();
+                break;
+
+            case "projector_pos":
+                Target = PlayerManager.Instance.Projector.transform;
+                if (Target != null)
+                    ApplyTransform(msg);
+                break;
+
+            case "periodic_table_pos":
+                Target = PlayerManager.Instance.PeriodicTable.transform;
+                if (Target != null)
+                    ApplyTransform(msg);
                 break;
         }
 
