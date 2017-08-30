@@ -82,21 +82,17 @@ public class PeriodicTableDragElement : MonoBehaviour, IInteractive
             _periodicTable.transform.position = Vector3.Lerp(_periodicTable.transform.position, OwnCursorManager.Instance.cursor.position, Time.deltaTime * 8f);
             _periodicTable.transform.rotation = Quaternion.Slerp(_periodicTable.transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f);
 
-            if (isSharingFirstTime || IsSharing)
-            {
-                isSharingFirstTime = false;
-                SV_Sharing.Instance.SendTransform(
+            SV_Sharing.Instance.SendTransform(
                     _periodicTable.transform.position,
                     _periodicTable.transform.rotation,
                     _periodicTable.transform.localScale,
                     "periodic_table_pos");
 
-                SV_Sharing.Instance.SendTransform(
+            SV_Sharing.Instance.SendTransform(
                  _professor.transform.position,
                  _professor.transform.rotation,
                  _professor.transform.localScale,
                  "professor_pos");
-            }
 
             yield return null;
         }
