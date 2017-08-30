@@ -192,6 +192,10 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private ProjectorController projector;
 
+    private GameObject professor;
+
+    private GameObject chaptersMenu;
+
     private SkipGidButton skipGidButton;
     #endregion
 
@@ -203,6 +207,10 @@ public class PlayerManager : Singleton<PlayerManager>
     public ProjectorController Projector { get { return projector; } }
 
     public SkipGidButton SkipGidButton { get { return skipGidButton; } }
+
+    public GameObject Professor { get { return professor; } }
+
+    public GameObject ChaptersMenu { get { return chaptersMenu; } }
 
     public float StartTime { get; private set; }
 
@@ -230,6 +238,8 @@ public class PlayerManager : Singleton<PlayerManager>
         periodicTable = GameObject.FindObjectOfType<PeriodicTable>();
         projector = GameObject.FindObjectOfType<ProjectorController>();
         skipGidButton = GameObject.FindObjectOfType<SkipGidButton>();
+        professor = GameObject.FindObjectOfType<ProfessorController>().gameObject;
+        chaptersMenu = GameObject.FindObjectOfType<menu>().gameObject;
 
         StartTime = Time.time;
     }

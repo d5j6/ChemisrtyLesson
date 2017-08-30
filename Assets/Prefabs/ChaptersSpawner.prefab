@@ -568,6 +568,7 @@ GameObject:
   - component: {fileID: 4105348327837406}
   - component: {fileID: 114172620360323526}
   - component: {fileID: 114880455114567164}
+  - component: {fileID: 114134452782706498}
   m_Layer: 8
   m_Name: ChaptersSpawner
   m_TagString: Untagged
@@ -690,7 +691,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1819248483639184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5019838, y: -0.3896446, z: 4.9675293}
   m_LocalScale: {x: 1.2, y: 1.1, z: 1.2}
   m_Children:
   - {fileID: 4509749722251746}
@@ -1122,6 +1123,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114134452782706498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1819248483639184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e161f25e5df33104487f5e6727fff6d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114140180989942610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1728,7 +1740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47c01f36b6124a4f9c26fab742e9bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chaptersMenu: {fileID: 0}
+  _chaptersMenu: {fileID: 1819248483639184}
   _sprite: {fileID: 0}
   _selfColor: {r: 0, g: 0, b: 0, a: 0}
   _highlightColor: {r: 1, g: 1, b: 1, a: 1}

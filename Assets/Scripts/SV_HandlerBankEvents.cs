@@ -75,6 +75,18 @@ public class SV_HandlerBankEvents : SpectatorView.SV_Singleton<SV_HandlerBankEve
                 if (Target != null)
                     ApplyTransform(msg);
                 break;
+
+            case "professor_pos":
+                Target = PlayerManager.Instance.Professor.transform;
+                if (Target != null)
+                    ApplyTransform(msg);
+                break;
+
+            case "menu_pos":
+                Target = PlayerManager.Instance.ChaptersMenu.transform;
+                if (Target != null)
+                    ApplyTransform(msg);
+                break;
         }
 
 

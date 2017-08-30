@@ -25,6 +25,30 @@ namespace HoloToolkit.Unity.InputModule
         public RaycastHit HitInfo { get { return hitInfo; } }
         private RaycastHit hitInfo;
 
+        public GameObject FocusedObject
+        {
+            get
+            {
+                return HitObject;
+            }
+        }
+
+        public Vector3 Position
+        {
+            get
+            {
+                return HitInfo.point;
+            }
+        }
+
+        public Vector3 Normal
+        {
+            get
+            {
+                return HitInfo.normal;
+            }
+        }
+
         /// <summary>
         /// The game object that is currently being gazed at, if any.
         /// </summary>

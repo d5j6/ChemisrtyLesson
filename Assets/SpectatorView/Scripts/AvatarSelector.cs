@@ -23,17 +23,4 @@ public class AvatarSelector : MonoBehaviour
 
         //LocalPlayerManager.Instance.SetUserAvatar(AvatarIndex);
     }
-
-    void Start()
-    {
-        // Add Billboard component so the avatar always faces the user.
-        Billboard billboard = gameObject.GetComponent<Billboard>();
-        if (billboard == null)
-        {
-            billboard = gameObject.AddComponent<Billboard>();
-        }
-
-        // Lock rotation along the Y axis.
-        //billboard.PivotAxis = PivotAxis.Y;
-    }
 }

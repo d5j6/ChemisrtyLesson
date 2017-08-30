@@ -30,6 +30,15 @@ public class MenuDragScript : MonoBehaviour, IInteractive
     [SerializeField]
     private List<ActionType> _allowedTypes;
 
+    private bool isSharingFirstTime;
+    public bool IsSharing { get; set; }
+
+    private void Awake()
+    {
+        isSharingFirstTime = true;
+        IsSharing = false;
+    }
+
     public List<ActionType> GetAllowedActions()
     {
         return _allowedTypes;
@@ -78,6 +87,17 @@ public class MenuDragScript : MonoBehaviour, IInteractive
             //Vector3 test = Vector3.Lerp(_chaptersMenu.transform.rotation.eulerAngles, OwnCursorManager.Instance.cursor.rotation.eulerAngles, Time.deltaTime);
             //test.y *= -1;
             //_chaptersMenu.transform.rotation = Quaternion.Euler(test);
+
+            if (isSharingFirstTime || IsSharing)
+            {
+                isSharingFirstTime = false;
+                SV_Sharing.Instance.SendTransform(
+                    _chaptersMenu.transform.position,
+                    _chaptersMenu.transform.rotation,
+                    _chaptersMenu.transform.localScale,
+                    "menu_pos");
+            }
+
             yield return null;
         }
     }

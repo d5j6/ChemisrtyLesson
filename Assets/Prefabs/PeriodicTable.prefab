@@ -25130,8 +25130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66908407a6be6ce429ea98044bdbc15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chaptersMenu: {fileID: 1977165603259468, guid: e7a980bef2485fb42929265849129ee6,
-    type: 2}
+  _chaptersMenu: {fileID: 0}
   _sprite: {fileID: 0}
   _selfColor: {r: 0, g: 0, b: 0, a: 0}
   _highlightColor: {r: 1, g: 1, b: 1, a: 1}
@@ -36446,6 +36445,7 @@ MonoBehaviour:
   _selfColor: {r: 0, g: 0.5019608, b: 1, a: 1}
   _highlightColor: {r: 1, g: 1, b: 1, a: 1}
   _duration: 0.4
+  _professor: {fileID: 0}
   _allowedTypes: 01000000
 --- !u!114 &114000012859169786
 MonoBehaviour:

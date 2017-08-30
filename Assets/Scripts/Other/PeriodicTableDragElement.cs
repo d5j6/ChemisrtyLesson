@@ -21,6 +21,9 @@ public class PeriodicTableDragElement : MonoBehaviour, IInteractive
     [SerializeField]
     private float _duration = 1f;
 
+    [SerializeField]
+    private GameObject _professor;
+
     private Tween _colorTween;
 
     private int _oldLayer;
@@ -60,6 +63,8 @@ public class PeriodicTableDragElement : MonoBehaviour, IInteractive
 
     public bool TryToDrag()
     {
+        _professor.transform.parent = _periodicTable.transform;
+
         Debug.Log("sd");
         _oldLayer = _periodicTable.layer;
 
@@ -72,10 +77,10 @@ public class PeriodicTableDragElement : MonoBehaviour, IInteractive
 
     IEnumerator DragCoroutine()
     {
-        while(true)
+        while (true)
         {
             _periodicTable.transform.position = Vector3.Lerp(_periodicTable.transform.position, OwnCursorManager.Instance.cursor.position, Time.deltaTime * 8f);
-            _periodicTable.transform.rotation = Quaternion.Slerp(_periodicTable.transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f) ;
+            _periodicTable.transform.rotation = Quaternion.Slerp(_periodicTable.transform.rotation, OwnCursorManager.Instance.cursor.rotation, Time.deltaTime * 8f);
 
             if (isSharingFirstTime || IsSharing)
             {
@@ -85,6 +90,12 @@ public class PeriodicTableDragElement : MonoBehaviour, IInteractive
                     _periodicTable.transform.rotation,
                     _periodicTable.transform.localScale,
                     "periodic_table_pos");
+
+                SV_Sharing.Instance.SendTransform(
+                 _professor.transform.position,
+                 _professor.transform.rotation,
+                 _professor.transform.localScale,
+                 "professor_pos");
             }
 
             yield return null;
@@ -97,15 +108,17 @@ public class PeriodicTableDragElement : MonoBehaviour, IInteractive
 
         _periodicTable.transform.position = OwnGazeManager.Instance.HitPoint;
         _periodicTable.transform.rotation = Quaternion.LookRotation(OwnGazeManager.Instance.PointNormal);
-        
+
         ChangeLayerRecursively(_periodicTable, _oldLayer);
+
+        _professor.transform.parent = null;
     }
 
     private void ChangeLayerRecursively(GameObject go, int layer)
     {
         go.layer = layer;
 
-        foreach(Transform child in go.transform)
+        foreach (Transform child in go.transform)
         {
             ChangeLayerRecursively(child.gameObject, layer);
         }
