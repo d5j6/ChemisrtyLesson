@@ -6,7 +6,9 @@ namespace Slate.ActionClips{
 	[Category("Transform")]
 	[Description("Rotate actor transform to look at specified target position for a period of time or permanentely if blend out is zero")]
 	public class LookAt : ActorActionClip {
-		
+
+        public bool isTurnedOff = false;
+
 		[SerializeField] [HideInInspector]
 		private float _length = 1;
 		[SerializeField] [HideInInspector]
@@ -45,6 +47,11 @@ namespace Slate.ActionClips{
 			get {return _blendOut;}
 			set {_blendOut = value;}
 		}
+
+        void Update()
+        {
+            BtnTap.Instance.isTurnedOff = !isTurnedOff;
+        }
 
 		protected override void OnCreate(){
 			targetPosition.value = ActorPositionInSpace(targetPosition.space);

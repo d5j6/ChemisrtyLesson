@@ -5,7 +5,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 
 
-public class BtnTap : MonoBehaviour, IInteractive
+public class BtnTap : Singleton<BtnTap>, IInteractive
 {
     private AudioSource audioSource;
 
@@ -28,10 +28,14 @@ public class BtnTap : MonoBehaviour, IInteractive
     [SerializeField]
     private float _duration = 1f;
 
+    public bool isTurnedOff { get; set; }
+
     private bool isActiveBtn = false;
     // Use this for initialization
     void Start()
     {
+        isTurnedOff = false;
+
         _text = GetComponentInChildren<Text>();
         _text.color = Color.white;
 
@@ -62,14 +66,17 @@ public class BtnTap : MonoBehaviour, IInteractive
         switch (gameObject.name)
         {
             case "Demo":
+                isTurnedOff = true;
                 CutsceneManager.Instance.PlaySectionNow(playDemo: true);
                 // CutsceneManager.Instance.PlaySectionNow(playDemo: true);
                 break;
             case "Stop":
+                isTurnedOff = false;
                 CutsceneManager.Instance.SkipCutscene();
                 CutsceneManager.Instance.StopCutscene();
                 break;
             default:
+                isTurnedOff = true;
                 CutsceneManager.Instance.PlaySectionNow(sectionName: chapterName);
                 break;
         }

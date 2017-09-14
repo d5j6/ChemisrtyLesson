@@ -30,7 +30,7 @@ namespace HoloToolkit.Unity.SpatialMapping
 
         [Tooltip("Determines if spatial mapping data will be rendered.")]
         [SerializeField]
-        private bool drawVisualMeshes = false;
+        private bool drawVisualMeshes = true;
 
         [Tooltip("Determines if spatial mapping data will cast shadows.")]
         [SerializeField]

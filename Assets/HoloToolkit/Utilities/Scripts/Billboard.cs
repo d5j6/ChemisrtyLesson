@@ -18,6 +18,8 @@ namespace HoloToolkit.Unity
     /// </summary>
     public class Billboard : MonoBehaviour
     {
+        public bool isProfessor = false;
+
         /// <summary>
         /// The axis about which the object will rotate.
         /// </summary>
@@ -61,8 +63,16 @@ namespace HoloToolkit.Unity
                 return;
             }
 
-            // Calculate and apply the rotation required to reorient the object
-            transform.rotation = Quaternion.LookRotation(-directionToTarget);
+            if (!isProfessor)
+            {
+                // Calculate and apply the rotation required to reorient the object
+                transform.rotation = Quaternion.LookRotation(-directionToTarget);
+            }
+            else
+            {
+                // Calculate and apply the rotation required to reorient the object
+                transform.rotation = Quaternion.LookRotation(directionToTarget);
+            } 
         }
     }
 }

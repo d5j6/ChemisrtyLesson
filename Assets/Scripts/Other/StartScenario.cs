@@ -113,6 +113,10 @@ public class StartScenario : Singleton<StartScenario>
             projector.transform.localScale,
             "projector");
 
+        Vector3 projectorSpawnPos = new Vector3(-1.5f, 0.4f, -0.2f);
+        projectorSpawnPos = periodicTable.transform.TransformPoint(-projectorSpawnPos);
+        projector.transform.position = projectorSpawnPos;
+
         projector.transform.parent = null;
 
         DataManager.Instance.InitializeDictionaries();
